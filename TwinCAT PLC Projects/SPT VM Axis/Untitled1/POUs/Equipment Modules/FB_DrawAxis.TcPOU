@@ -28,11 +28,8 @@ CASE SequenceState OF
 	20: // Disable Axis
 		Axis.Disable();
 		IF NOT Axis.Enabled THEN
-			SequenceState := SequenceState + 10;
+			StateTasksComplete := TRUE;
 		END_IF
-
-	30:
-		StateTasksComplete := TRUE;
 END_CASE
 
 SUPER^.Aborting();]]></ST>
@@ -65,15 +62,9 @@ SUPER^.Aborting();]]></ST>
 				END_IF
 
 				IF Axis.Stopped THEN
-					SequenceState := SequenceState + 10;
+					StateTasksComplete := TRUE;
 				END_IF
-
-			20:
-				StateTasksComplete := TRUE;
 		END_CASE
-
-	ePMLProtUnitMode_Maintenance, ePMLProtUnitMode_Manual:
-		;
 END_CASE
 
 SUPER^.Completing();]]></ST>
@@ -152,11 +143,8 @@ END_CASE]]></ST>
 				Axis.Master1 REF= MasterRef;
 				Axis.GearIn();
 				IF Axis.InGear THEN
-					SequenceState := SequenceState + 10;
+					StateTasksComplete := TRUE;
 				END_IF
-
-			30:
-				StateTasksComplete := TRUE;
 		END_CASE
 END_CASE
 
@@ -177,11 +165,8 @@ SUPER^.Starting();]]></ST>
 				Axis.Override := 100;
 				Axis.Stop(); // This will also GearOut by default
 				IF Axis.Stopped THEN
-					SequenceState := SequenceState + 10;
+					StateTasksComplete := TRUE;
 				END_IF
-
-			20:
-				StateTasksComplete := TRUE;
 		END_CASE
 END_CASE
 
@@ -192,14 +177,14 @@ SUPER^.Stopping();]]></ST>
       <LineId Id="9" Count="0" />
     </LineIds>
     <LineIds Name="FB_DrawAxis.Aborting">
-      <LineId Id="385" Count="22" />
+      <LineId Id="432" Count="19" />
       <LineId Id="335" Count="0" />
     </LineIds>
     <LineIds Name="FB_DrawAxis.AxisRef.Get">
       <LineId Id="2" Count="0" />
     </LineIds>
     <LineIds Name="FB_DrawAxis.Completing">
-      <LineId Id="575" Count="25" />
+      <LineId Id="671" Count="19" />
       <LineId Id="25" Count="0" />
     </LineIds>
     <LineIds Name="FB_DrawAxis.CyclicLogic">
@@ -214,11 +199,11 @@ SUPER^.Stopping();]]></ST>
       <LineId Id="2" Count="0" />
     </LineIds>
     <LineIds Name="FB_DrawAxis.Starting">
-      <LineId Id="557" Count="24" />
+      <LineId Id="583" Count="21" />
       <LineId Id="137" Count="0" />
     </LineIds>
     <LineIds Name="FB_DrawAxis.Stopping">
-      <LineId Id="267" Count="18" />
+      <LineId Id="287" Count="15" />
       <LineId Id="204" Count="0" />
     </LineIds>
   </POU>

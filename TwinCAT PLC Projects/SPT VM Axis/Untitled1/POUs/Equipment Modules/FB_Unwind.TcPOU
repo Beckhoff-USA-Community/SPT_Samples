@@ -28,11 +28,8 @@ CASE SequenceState OF
 	20: // Disable Axis
 		Axis.Disable();
 		IF NOT Axis.Enabled THEN
-			SequenceState := SequenceState + 10;
+			StateTasksComplete := TRUE;
 		END_IF
-
-	30:
-		StateTasksComplete := TRUE;
 END_CASE
 
 SUPER^.Aborting();]]></ST>
@@ -65,15 +62,9 @@ SUPER^.Aborting();]]></ST>
 				END_IF
 
 				IF Axis.Stopped THEN
-					SequenceState := SequenceState + 10;
+					StateTasksComplete := TRUE;
 				END_IF
-
-			20:
-				StateTasksComplete := TRUE;
 		END_CASE
-
-	ePMLProtUnitMode_Maintenance, ePMLProtUnitMode_Manual:
-		;
 END_CASE
 
 SUPER^.Completing();]]></ST>
@@ -154,11 +145,8 @@ END_CASE]]></ST>
 				Axis.RatioMaster1 := 0.5; // Can be set at anytime and changed while in motion
 				Axis.GearIn();
 				IF Axis.InGear THEN
-					SequenceState := SequenceState + 10;
+					StateTasksComplete := TRUE;
 				END_IF
-
-			30:
-				StateTasksComplete := TRUE;
 		END_CASE
 END_CASE
 
@@ -179,11 +167,8 @@ SUPER^.Starting();]]></ST>
 				Axis.Override := 100;
 				Axis.Stop(); // This will also GearOut
 				IF Axis.Stopped THEN
-					SequenceState := SequenceState + 10;
+					StateTasksComplete := TRUE;
 				END_IF
-
-			20:
-				StateTasksComplete := TRUE;
 		END_CASE
 END_CASE
 
@@ -194,14 +179,14 @@ SUPER^.Stopping();]]></ST>
       <LineId Id="9" Count="0" />
     </LineIds>
     <LineIds Name="FB_Unwind.Aborting">
-      <LineId Id="454" Count="22" />
+      <LineId Id="478" Count="19" />
       <LineId Id="381" Count="0" />
     </LineIds>
     <LineIds Name="FB_Unwind.AxisRef.Get">
       <LineId Id="2" Count="0" />
     </LineIds>
     <LineIds Name="FB_Unwind.Completing">
-      <LineId Id="306" Count="25" />
+      <LineId Id="356" Count="19" />
       <LineId Id="25" Count="0" />
     </LineIds>
     <LineIds Name="FB_Unwind.CyclicLogic">
@@ -216,11 +201,11 @@ SUPER^.Stopping();]]></ST>
       <LineId Id="2" Count="0" />
     </LineIds>
     <LineIds Name="FB_Unwind.Starting">
-      <LineId Id="293" Count="25" />
+      <LineId Id="320" Count="22" />
       <LineId Id="137" Count="0" />
     </LineIds>
     <LineIds Name="FB_Unwind.Stopping">
-      <LineId Id="167" Count="18" />
+      <LineId Id="187" Count="15" />
       <LineId Id="126" Count="0" />
     </LineIds>
   </POU>

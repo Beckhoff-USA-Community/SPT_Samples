@@ -27,11 +27,8 @@ CASE SequenceState OF
 	20: // Disable Axis
 		Axis.Disable();
 		IF NOT Axis.Enabled THEN
-			SequenceState := SequenceState + 10;
+			StateTasksComplete := TRUE;
 		END_IF
-
-	30:
-		StateTasksComplete := TRUE;
 END_CASE
 
 SUPER^.Aborting();]]></ST>
@@ -59,15 +56,9 @@ SUPER^.Aborting();]]></ST>
 			10: // Stop Axis
 				Axis.Stop();
 				IF Axis.Stopped THEN
-					SequenceState := SequenceState + 10;
+					StateTasksComplete := TRUE;
 				END_IF
-
-			20:
-				StateTasksComplete := TRUE;
 		END_CASE
-
-	ePMLProtUnitMode_Maintenance, ePMLProtUnitMode_Manual:
-		;
 END_CASE
 
 SUPER^.Completing();]]></ST>
@@ -132,11 +123,8 @@ END_CASE]]></ST>
 				NoStateTasksToComplete := FALSE;
 				Axis.Enable();
 				IF Axis.Enabled THEN
-					SequenceState := SequenceState + 10;
+					StateTasksComplete := TRUE;
 				END_IF
-
-			20:
-				StateTasksComplete := TRUE;
 		END_CASE
 END_CASE
 
@@ -157,11 +145,8 @@ SUPER^.Starting();]]></ST>
 				Axis.Override := 100;
 				Axis.Stop(); // This will also GearOut
 				IF Axis.Stopped THEN
-					SequenceState := SequenceState + 10;
+					StateTasksComplete := TRUE;
 				END_IF
-
-			20:
-				StateTasksComplete := TRUE;
 		END_CASE
 END_CASE
 
@@ -172,14 +157,14 @@ SUPER^.Stopping();]]></ST>
       <LineId Id="9" Count="0" />
     </LineIds>
     <LineIds Name="FB_VM.Aborting">
-      <LineId Id="337" Count="22" />
+      <LineId Id="361" Count="19" />
       <LineId Id="311" Count="0" />
     </LineIds>
     <LineIds Name="FB_VM.AxisRef.Get">
       <LineId Id="2" Count="0" />
     </LineIds>
     <LineIds Name="FB_VM.Completing">
-      <LineId Id="170" Count="20" />
+      <LineId Id="210" Count="14" />
       <LineId Id="25" Count="0" />
     </LineIds>
     <LineIds Name="FB_VM.CyclicLogic">
@@ -191,11 +176,11 @@ SUPER^.Stopping();]]></ST>
       <LineId Id="11" Count="0" />
     </LineIds>
     <LineIds Name="FB_VM.Starting">
-      <LineId Id="275" Count="18" />
+      <LineId Id="295" Count="15" />
       <LineId Id="137" Count="0" />
     </LineIds>
     <LineIds Name="FB_VM.Stopping">
-      <LineId Id="173" Count="18" />
+      <LineId Id="192" Count="15" />
       <LineId Id="151" Count="0" />
     </LineIds>
   </POU>
