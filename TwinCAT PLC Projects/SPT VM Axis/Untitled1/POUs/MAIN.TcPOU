@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="MAIN" Id="{7e5c02d1-a39d-4f28-8629-587743ad1f26}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM MAIN
+VAR
+	Machine	  : FB_Machine;
+	nextState : BOOL;
+	abort	  : BOOL;
+	stop	  : BOOL;
+	curState  : E_PMLState;
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[// All sample code provided by Beckhoff Automation LLC are for illustrative purposes only and are provided “as is” and without any warranties, express or implied. Actual implementations in applications will vary significantly. Beckhoff Automation LLC shall have no liability for, and does not waive any rights in relation to, any code samples that it provides or the use of such code samples for any purpose.
+
+(*
+This sample displays how an axis component of an EM can be coupled to the axis component of another EM.
+The Unwind Axis makes use of a Gear Ratio in its Coupling - see FB_Unwind.Starting step 20.
+The configuration for setting the reference to the Master Axis is done in FB_Machine.Initialize step 20.
+
+This code is not a full implementation as there is no use of MC_Reset or other needed code for actual machine use.
+There is no code to move the master axis, but it can be jogged from the NC for testing.
+
+*)
+Machine.CyclicLogic();
+
+// For display purposes as local variable
+curState := Machine.CurrentState;
+
+// Toggle to move to next state
+IF nextState THEN
+	nextState := FALSE;
+	CASE Machine.CurrentState OF
+		ePMLState_Aborted:
+			Machine.ChangeState(State := ePMLCommand_Clear);
+
+		ePMLState_Stopped, ePMLState_Complete:
+			Machine.ChangeState(State := ePMLCommand_Reset);
+
+		ePMLState_Idle:
+			Machine.ChangeState(State := ePMLCommand_Start);
+
+		ePMLState_Execute:
+			Machine.ChangeState(State := ePMLCommand_Complete);
+	END_CASE
+END_IF
+
+IF abort THEN
+	abort := FALSE;
+	Machine.ChangeState(State := ePMLCommand_Abort);
+END_IF
+
+IF stop THEN
+	stop := FALSE;
+	Machine.ChangeState(State := ePMLCommand_Stop);
+END_IF]]></ST>
+    </Implementation>
+    <LineIds Name="MAIN">
+      <LineId Id="793" Count="41" />
+      <LineId Id="11" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

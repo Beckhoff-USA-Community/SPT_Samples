@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="FB_Machine" Id="{97b13e0f-7ef6-40f4-849d-6d84ce81f8c2}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_Machine EXTENDS FB_PackML_BaseModule
+VAR
+	VirtualMaster : FB_VM		:= (Name := 'Virtual Master');
+	Unwind		  : FB_Unwind	:= (Name := 'Unwind EM');
+	Draw		  : FB_DrawAxis := (Name := 'Draw EM');
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Method Name="CyclicLogic" Id="{ebaa3bcd-61fa-4a47-a483-8bcc7204493f}">
+      <Declaration><![CDATA[METHOD PUBLIC CyclicLogic]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF NOT InitComplete THEN
+	_InitComplete := Initialize();
+	RETURN;
+END_IF
+
+SUPER^.CyclicLogic();]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="Initialize" Id="{7539f10c-75c9-45c6-b67b-8bf6d3682a5e}">
+      <Declaration><![CDATA[METHOD PROTECTED Initialize : BOOL;
+VAR
+	i : UDINT;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[Initialize := FALSE;
+CASE DescendantSequenceState OF
+	0: // Register Submodules
+		RegisterSubmodule(VirtualMaster);
+		RegisterSubmodule(Unwind);
+		RegisterSubmodule(Draw);
+
+		// Register Components
+
+		// Set Config
+		_LogModeChanges			:= FALSE;
+		_LogStateChanges		:= FALSE;
+		DescendantSequenceState := DescendantSequenceState + 10;
+
+	10: // Setup Custom modes here
+		DescendantSequenceState := DescendantSequenceState + 10;
+
+	20: // Copy Mode names
+		FOR i := 1 TO 10 DO
+			ModeNames[i] := F_UnitModeToString(UDINT_TO_DINT(i));
+		END_FOR
+
+		DescendantSequenceState := DescendantSequenceState + 10;
+
+	30: // Default recipe values parameters entered here
+		Unwind.MasterAxisRef	REF= VirtualMaster.AxisRef;
+		Draw.MasterAxisRef		REF= VirtualMaster.AxisRef;
+		DescendantSequenceState := DescendantSequenceState + 10;
+
+	40:
+		IF SUPER^.Initialize() THEN
+			DescendantSequenceState := DescendantSequenceState + 10;
+		END_IF
+
+	50:
+		Initialize := TRUE;
+END_CASE]]></ST>
+      </Implementation>
+    </Method>
+    <LineIds Name="FB_Machine">
+      <LineId Id="9" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_Machine.CyclicLogic">
+      <LineId Id="33" Count="4" />
+      <LineId Id="15" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_Machine.Initialize">
+      <LineId Id="764" Count="35" />
+      <LineId Id="11" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>
