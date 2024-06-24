@@ -1,7 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
   <POU Name="FB_Machine" Id="{97b13e0f-7ef6-40f4-849d-6d84ce81f8c2}" SpecialFunc="None">
-    <Declaration><![CDATA[FUNCTION_BLOCK FB_Machine EXTENDS FB_PackML_BaseModule
+    <Declaration><![CDATA[{attribute 'no_explicit_call' := 'This FB is a CLASS and must be accessed using methods or properties'}
+FUNCTION_BLOCK FB_Machine EXTENDS FB_PackML_BaseModule
 VAR
 	VirtualMaster : FB_VM		:= (Name := 'Virtual Master');
 	Unwind		  : FB_Unwind	:= (Name := 'Unwind EM');
@@ -13,7 +14,7 @@ END_VAR]]></Declaration>
     <Method Name="CyclicLogic" Id="{ebaa3bcd-61fa-4a47-a483-8bcc7204493f}">
       <Declaration><![CDATA[METHOD PUBLIC CyclicLogic]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF NOT InitComplete THEN
+        <ST><![CDATA[IF NOT _InitComplete THEN
 	_InitComplete := Initialize();
 	RETURN;
 END_IF

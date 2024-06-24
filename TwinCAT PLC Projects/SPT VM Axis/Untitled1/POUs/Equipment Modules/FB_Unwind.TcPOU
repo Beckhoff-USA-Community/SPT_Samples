@@ -1,7 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
   <POU Name="FB_Unwind" Id="{531fe024-1c35-49f6-9ea6-b83468bb853c}" SpecialFunc="None">
-    <Declaration><![CDATA[FUNCTION_BLOCK FB_Unwind EXTENDS FB_PackML_BaseModule
+    <Declaration><![CDATA[{attribute 'no_explicit_call' := 'This FB is a CLASS and must be accessed using methods or properties'}
+FUNCTION_BLOCK FB_Unwind EXTENDS FB_PackML_BaseModule
 VAR
 	Axis	  : FB_Component_BasicSlaveAxis := (Name := 'Unwind Axis');
 	MasterRef : REFERENCE TO AXIS_REF;
@@ -9,7 +10,9 @@ END_VAR]]></Declaration>
     <Implementation>
       <ST><![CDATA[]]></ST>
     </Implementation>
-    <Method Name="Aborting" Id="{0e94a613-0e2d-43e0-9b59-861775c0ebdb}">
+    <Folder Name="Methods" Id="{b4c32a2f-994f-4302-a71a-22f7642815bc}" />
+    <Folder Name="Properties" Id="{36263378-0b9a-4feb-b883-7af7c1e14ed1}" />
+    <Method Name="Aborting" Id="{0e94a613-0e2d-43e0-9b59-861775c0ebdb}" FolderPath="Methods\">
       <Declaration><![CDATA[METHOD PROTECTED Aborting]]></Declaration>
       <Implementation>
         <ST><![CDATA[// Mode is ignored
@@ -35,7 +38,7 @@ END_CASE
 SUPER^.Aborting();]]></ST>
       </Implementation>
     </Method>
-    <Property Name="AxisRef" Id="{d13e3860-08f0-4ce9-b897-f8cfcdba7e93}">
+    <Property Name="AxisRef" Id="{d13e3860-08f0-4ce9-b897-f8cfcdba7e93}" FolderPath="Properties\">
       <Declaration><![CDATA[PROPERTY AxisRef : REFERENCE TO AXIS_REF]]></Declaration>
       <Get Name="Get" Id="{e4cb4012-07fb-4a4b-a3d7-60c1cc05d1d7}">
         <Declaration><![CDATA[]]></Declaration>
@@ -44,7 +47,7 @@ SUPER^.Aborting();]]></ST>
         </Implementation>
       </Get>
     </Property>
-    <Method Name="Completing" Id="{2b5befec-31ac-4e0e-8a6d-577805b741ec}">
+    <Method Name="Completing" Id="{2b5befec-31ac-4e0e-8a6d-577805b741ec}" FolderPath="Methods\">
       <Declaration><![CDATA[METHOD PROTECTED Completing]]></Declaration>
       <Implementation>
         <ST><![CDATA[CASE _CurrentMode OF
@@ -70,10 +73,10 @@ END_CASE
 SUPER^.Completing();]]></ST>
       </Implementation>
     </Method>
-    <Method Name="CyclicLogic" Id="{761193c7-ca9e-4580-b131-82e57b210c90}">
+    <Method Name="CyclicLogic" Id="{761193c7-ca9e-4580-b131-82e57b210c90}" FolderPath="Methods\">
       <Declaration><![CDATA[METHOD PUBLIC CyclicLogic]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF NOT InitComplete THEN
+        <ST><![CDATA[IF NOT _InitComplete THEN
 	_InitComplete := Initialize();
 	RETURN;
 END_IF
@@ -81,7 +84,7 @@ END_IF
 SUPER^.CyclicLogic();]]></ST>
       </Implementation>
     </Method>
-    <Method Name="Initialize" Id="{e3a8ca4b-f177-4610-88fe-7274fe30d43b}">
+    <Method Name="Initialize" Id="{e3a8ca4b-f177-4610-88fe-7274fe30d43b}" FolderPath="Methods\">
       <Declaration><![CDATA[METHOD PROTECTED Initialize : BOOL;
 VAR
 	i : UDINT;
@@ -115,7 +118,7 @@ CASE DescendantSequenceState OF
 END_CASE]]></ST>
       </Implementation>
     </Method>
-    <Property Name="MasterAxisRef" Id="{3374daa1-7f61-440f-abd3-569198fd16f3}">
+    <Property Name="MasterAxisRef" Id="{3374daa1-7f61-440f-abd3-569198fd16f3}" FolderPath="Properties\">
       <Declaration><![CDATA[PROPERTY MasterAxisRef : REFERENCE TO AXIS_REF]]></Declaration>
       <Set Name="Set" Id="{5f9e248d-d1a0-4f8f-bf65-7d19780c479a}">
         <Declaration><![CDATA[]]></Declaration>
@@ -124,7 +127,7 @@ END_CASE]]></ST>
         </Implementation>
       </Set>
     </Property>
-    <Method Name="Starting" Id="{edea4660-a85a-4b0f-83e4-8557ebe4b1fc}">
+    <Method Name="Starting" Id="{edea4660-a85a-4b0f-83e4-8557ebe4b1fc}" FolderPath="Methods\">
       <Declaration><![CDATA[METHOD PROTECTED Starting]]></Declaration>
       <Implementation>
         <ST><![CDATA[CASE _CommandedMode OF
@@ -153,7 +156,7 @@ END_CASE
 SUPER^.Starting();]]></ST>
       </Implementation>
     </Method>
-    <Method Name="Stopping" Id="{c55df479-e1d7-47c1-8f42-c67178fb7cf3}">
+    <Method Name="Stopping" Id="{c55df479-e1d7-47c1-8f42-c67178fb7cf3}" FolderPath="Methods\">
       <Declaration><![CDATA[METHOD PROTECTED Stopping]]></Declaration>
       <Implementation>
         <ST><![CDATA[CASE _CurrentMode OF

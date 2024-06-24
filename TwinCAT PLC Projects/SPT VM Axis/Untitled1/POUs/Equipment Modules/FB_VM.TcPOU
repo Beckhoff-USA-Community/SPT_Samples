@@ -1,14 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
   <POU Name="FB_VM" Id="{e8eb8946-ac6b-4f9a-a349-a2038fff9f99}" SpecialFunc="None">
-    <Declaration><![CDATA[FUNCTION_BLOCK FB_VM EXTENDS FB_PackML_BaseModule
+    <Declaration><![CDATA[{attribute 'no_explicit_call' := 'This FB is a CLASS and must be accessed using methods or properties'}
+FUNCTION_BLOCK FB_VM EXTENDS FB_PackML_BaseModule
 VAR
 	Axis : FB_Component_BasicSlaveAxis := (Name := 'Virtual Master Axis');
 END_VAR]]></Declaration>
     <Implementation>
       <ST><![CDATA[]]></ST>
     </Implementation>
-    <Method Name="Aborting" Id="{0ab2a755-f479-4155-bea8-7b1b108018b5}">
+    <Folder Name="Methods" Id="{ab06e52a-d0cf-4098-b8b2-384220a5d636}" />
+    <Folder Name="Properties" Id="{79f964a1-6ef0-45b9-9994-3fc01e580b1f}" />
+    <Method Name="Aborting" Id="{0ab2a755-f479-4155-bea8-7b1b108018b5}" FolderPath="Methods\">
       <Declaration><![CDATA[METHOD PROTECTED Aborting]]></Declaration>
       <Implementation>
         <ST><![CDATA[// Mode is ignored
@@ -34,7 +37,7 @@ END_CASE
 SUPER^.Aborting();]]></ST>
       </Implementation>
     </Method>
-    <Property Name="AxisRef" Id="{8fbb3c08-11e6-42e9-be14-c11d172359bb}">
+    <Property Name="AxisRef" Id="{8fbb3c08-11e6-42e9-be14-c11d172359bb}" FolderPath="Properties\">
       <Declaration><![CDATA[PROPERTY AxisRef : REFERENCE TO AXIS_REF]]></Declaration>
       <Get Name="Get" Id="{2a15330a-5ee0-4def-aebb-a9f06cee8655}">
         <Declaration><![CDATA[]]></Declaration>
@@ -43,7 +46,7 @@ SUPER^.Aborting();]]></ST>
         </Implementation>
       </Get>
     </Property>
-    <Method Name="Completing" Id="{3ff898da-49a5-42a9-84dc-dd8eaed69c93}">
+    <Method Name="Completing" Id="{3ff898da-49a5-42a9-84dc-dd8eaed69c93}" FolderPath="Methods\">
       <Declaration><![CDATA[METHOD PROTECTED Completing]]></Declaration>
       <Implementation>
         <ST><![CDATA[CASE _CurrentMode OF
@@ -64,10 +67,10 @@ END_CASE
 SUPER^.Completing();]]></ST>
       </Implementation>
     </Method>
-    <Method Name="CyclicLogic" Id="{099d02ae-52c4-4630-a76e-d553625d2bca}">
+    <Method Name="CyclicLogic" Id="{099d02ae-52c4-4630-a76e-d553625d2bca}" FolderPath="Methods\">
       <Declaration><![CDATA[METHOD PUBLIC CyclicLogic]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF NOT InitComplete THEN
+        <ST><![CDATA[IF NOT _InitComplete THEN
 	_InitComplete := Initialize();
 	RETURN;
 END_IF
@@ -75,7 +78,7 @@ END_IF
 SUPER^.CyclicLogic();]]></ST>
       </Implementation>
     </Method>
-    <Method Name="Initialize" Id="{6642d997-98c2-45af-8731-ca9c93da577c}">
+    <Method Name="Initialize" Id="{6642d997-98c2-45af-8731-ca9c93da577c}" FolderPath="Methods\">
       <Declaration><![CDATA[METHOD PROTECTED Initialize : BOOL;
 VAR
 	i : UDINT;
@@ -109,7 +112,7 @@ CASE DescendantSequenceState OF
 END_CASE]]></ST>
       </Implementation>
     </Method>
-    <Method Name="Starting" Id="{d700bbd5-4ebd-42aa-9db1-b591835e231d}">
+    <Method Name="Starting" Id="{d700bbd5-4ebd-42aa-9db1-b591835e231d}" FolderPath="Methods\">
       <Declaration><![CDATA[METHOD PROTECTED Starting]]></Declaration>
       <Implementation>
         <ST><![CDATA[CASE _CommandedMode OF
@@ -131,7 +134,7 @@ END_CASE
 SUPER^.Starting();]]></ST>
       </Implementation>
     </Method>
-    <Method Name="Stopping" Id="{1d286d67-4c20-4caf-b756-9a8f72182cf7}">
+    <Method Name="Stopping" Id="{1d286d67-4c20-4caf-b756-9a8f72182cf7}" FolderPath="Methods\">
       <Declaration><![CDATA[METHOD PROTECTED Stopping]]></Declaration>
       <Implementation>
         <ST><![CDATA[CASE _CurrentMode OF
