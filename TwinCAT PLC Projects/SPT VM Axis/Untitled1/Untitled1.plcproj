@@ -18,19 +18,19 @@
     <LibraryReferences>{2f2bdab0-1556-4410-a7f1-3c332c7e2915}</LibraryReferences>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Machine\EquipmentModules\FB_DrawAxis.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Machine\EquipmentModules\FB_Unwind.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Machine\EquipmentModules\FB_VM.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Machine\MachineModule\FB_Machine.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="PlcTask.TcTTO">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="POUs\Equipment Modules\FB_DrawAxis.TcPOU">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="POUs\Equipment Modules\FB_Unwind.TcPOU">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="POUs\Equipment Modules\FB_VM.TcPOU">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="POUs\FB_Machine.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\MAIN.TcPOU">
@@ -40,7 +40,9 @@
   <ItemGroup>
     <Folder Include="DUTs" />
     <Folder Include="GVLs" />
-    <Folder Include="POUs\Equipment Modules" />
+    <Folder Include="Machine" />
+    <Folder Include="Machine\EquipmentModules" />
+    <Folder Include="Machine\MachineModule" />
     <Folder Include="VISUs" />
     <Folder Include="POUs" />
   </ItemGroup>
