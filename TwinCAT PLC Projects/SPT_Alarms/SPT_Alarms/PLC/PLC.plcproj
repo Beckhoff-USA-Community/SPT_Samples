@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <FileVersion>1.0.0.0</FileVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{2faf13dd-775d-4489-834b-5de468898ac8}</ProjectGuid>
+    <SubObjectsSortedByName>True</SubObjectsSortedByName>
+    <DownloadApplicationInfo>true</DownloadApplicationInfo>
+    <WriteProductVersion>true</WriteProductVersion>
+    <GenerateTpy>false</GenerateTpy>
+    <Name>PLC</Name>
+    <ProgramVersion>3.1.4024.0</ProgramVersion>
+    <Application>{5030cd57-eedb-4250-89b6-c8fa71ba44bf}</Application>
+    <TypeSystem>{8afa41c6-713b-47ba-95f1-e9267533dcf1}</TypeSystem>
+    <Implicit_Task_Info>{555438f2-3e22-46f0-bf19-d0b19208a2f2}</Implicit_Task_Info>
+    <Implicit_KindOfTask>{d0d87d60-de28-44f6-a50e-18dbbaeb79a8}</Implicit_KindOfTask>
+    <Implicit_Jitter_Distribution>{6f1917e7-0c95-4132-9d1c-1b0ca123f43a}</Implicit_Jitter_Distribution>
+    <LibraryReferences>{2ae72994-126f-4840-a129-3bf29fb62f9a}</LibraryReferences>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="PlcTask.TcTTO">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\Component.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\EquipmentModule.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\EquipmentModuleWithSubModule.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\Machine.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\MAIN.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="DUTs" />
+    <Folder Include="GVLs" />
+    <Folder Include="VISUs" />
+    <Folder Include="POUs" />
+  </ItemGroup>
+  <ItemGroup>
+    <PlaceholderReference Include="SPT Base Types">
+      <DefaultResolution>SPT Base Types, * (Beckhoff Automation LLC)</DefaultResolution>
+      <Namespace>SPT_BaseTypes</Namespace>
+      <Parameters>
+        <Parameter ListName="PARAMETERS_BASECOMPONENT" xmlns="">
+          <Key>COMPONENT_BASE_ALARM_COUNT</Key>
+          <Value>2</Value>
+        </Parameter>
+        <Parameter ListName="PARAMETERS_BASECOMPONENT" xmlns="">
+          <Key>INHIBIT_SIMULATION_WARNING</Key>
+          <Value>FALSE</Value>
+        </Parameter>
+        <Parameter ListName="PARAMETERS_PACKML_BASE" xmlns="">
+          <Key>MAX_NO_OF_SUBMODULES</Key>
+          <Value>20</Value>
+        </Parameter>
+        <Parameter ListName="PARAMETERS_PACKML_BASE" xmlns="">
+          <Key>MAX_NO_OF_COMPONENTS</Key>
+          <Value>32</Value>
+        </Parameter>
+        <Parameter ListName="PARAMETERS_PACKML_BASE" xmlns="">
+          <Key>MAX_NO_OF_EXTERNAL_CONTROLLERS</Key>
+          <Value>10</Value>
+        </Parameter>
+        <Parameter ListName="PARAMETERS_PACKML_BASE" xmlns="">
+          <Key>UNIT_MODE_DEFAULT</Key>
+          <Value>E_PMLUnitMode.ePMLUnitMode_Production</Value>
+        </Parameter>
+        <Parameter ListName="PARAMETERS_PACKML_BASE" xmlns="">
+          <Key>UNIT_STATE_DEFAULT</Key>
+          <Value>E_PMLCommand.ePMLCommand_Abort</Value>
+        </Parameter>
+        <Parameter ListName="PARAMETERS_PACKML_BASE" xmlns="">
+          <Key>CONCAT_SUBMODULE_NAME_WITH_PARENT</Key>
+          <Value>FALSE</Value>
+        </Parameter>
+        <Parameter ListName="PARAMETERS_PACKML_BASE" xmlns="">
+          <Key>CONCAT_COMPONENT_NAME_WITH_PARENT</Key>
+          <Value>TRUE</Value>
+        </Parameter>
+        <Parameter ListName="PARAMETERS_PACKML_BASE" xmlns="">
+          <Key>SUBMODULE_NAME_DELIMETER</Key>
+          <Value>' '</Value>
+        </Parameter>
+        <Parameter ListName="PARAMETERS_PACKML_BASE" xmlns="">
+          <Key>COMPONENT_NAME_DELIMETER</Key>
+          <Value>' '</Value>
+        </Parameter>
+        <Parameter ListName="PARAMETERS_PACKML_BASE" xmlns="">
+          <Key>STATELOGGER_DISABLED</Key>
+          <Value>FALSE</Value>
+        </Parameter>
+        <Parameter ListName="PARAMETERS_PACKML_BASE" xmlns="">
+          <Key>RESET_COMPONENTS_WITHOUT_ERROR</Key>
+          <Value>FALSE</Value>
+        </Parameter>
+        <Parameter ListName="PARAMETERS_TRACING" xmlns="">
+          <Key>TRACING_ENABLED</Key>
+          <Value>TRUE</Value>
+        </Parameter>
+        <Parameter ListName="PARAMETERS_TRACING" xmlns="">
+          <Key>MAX_LOG_ENTRIES_PER_SCAN</Key>
+          <Value>100</Value>
+        </Parameter>
+        <Parameter ListName="PARAMETERS_TRACING" xmlns="">
+          <Key>ALLOW_DUPLICATE_SEQUENTIAL_MESSAGES</Key>
+          <Value>FALSE</Value>
+        </Parameter>
+      </Parameters>
+    </PlaceholderReference>
+    <PlaceholderReference Include="SPT Event Logger">
+      <DefaultResolution>SPT Event Logger, * (Beckhoff Automation LLC)</DefaultResolution>
+      <Namespace>SPT_EventLogger</Namespace>
+    </PlaceholderReference>
+    <PlaceholderReference Include="Tc2_Standard">
+      <DefaultResolution>Tc2_Standard, * (Beckhoff Automation GmbH)</DefaultResolution>
+      <Namespace>Tc2_Standard</Namespace>
+    </PlaceholderReference>
+    <PlaceholderReference Include="Tc2_System">
+      <DefaultResolution>Tc2_System, * (Beckhoff Automation GmbH)</DefaultResolution>
+      <Namespace>Tc2_System</Namespace>
+      <Parameters>
+        <Parameter ListName="PARAM" xmlns="">
+          <Key>TABLE_UPPER_BOUND</Key>
+          <Value>15</Value>
+        </Parameter>
+        <Parameter ListName="PARAM" xmlns="">
+          <Key>STRING_LENGTH_EXP</Key>
+          <Value>255</Value>
+        </Parameter>
+        <Parameter ListName="PARAM" xmlns="">
+          <Key>STRING_LENGTH_ADDRESS</Key>
+          <Value>20</Value>
+        </Parameter>
+        <Parameter ListName="PARAM" xmlns="">
+          <Key>STRING_LENGTH_COMMENT</Key>
+          <Value>255</Value>
+        </Parameter>
+        <Parameter ListName="PARAM" xmlns="">
+          <Key>STRING_LENGTH_OUTSTRING</Key>
+          <Value>255</Value>
+        </Parameter>
+        <Parameter ListName="PARAM" xmlns="">
+          <Key>TABLE_SHOW_VALID_ITEMS</Key>
+          <Value>FALSE</Value>
+        </Parameter>
+      </Parameters>
+    </PlaceholderReference>
+    <PlaceholderReference Include="Tc3_EventLogger">
+      <DefaultResolution>Tc3_EventLogger, * (Beckhoff Automation GmbH)</DefaultResolution>
+      <Parameters>
+        <Parameter ListName="PARAMETERLIST" xmlns="">
+          <Key>CSOURCENAMESIZE</Key>
+          <Value>256</Value>
+        </Parameter>
+      </Parameters>
+      <Namespace>Tc3_EventLogger</Namespace>
+    </PlaceholderReference>
+    <PlaceholderReference Include="Tc3_Module">
+      <DefaultResolution>Tc3_Module, * (Beckhoff Automation GmbH)</DefaultResolution>
+      <Namespace>Tc3_Module</Namespace>
+    </PlaceholderReference>
+    <PlaceholderReference Include="Tc3_PackML_V2">
+      <DefaultResolution>Tc3_PackML_V2, * (Beckhoff Automation GmbH)</DefaultResolution>
+      <Parameters>
+        <Parameter ListName="GLOBALPARAMETERS" xmlns="">
+          <Key>MAXINTERFACEPARAMETERS</Key>
+          <Value>5</Value>
+        </Parameter>
+        <Parameter ListName="GLOBALPARAMETERS" xmlns="">
+          <Key>MAXPRODUCTPROCESSVARIABLES</Key>
+          <Value>10</Value>
+        </Parameter>
+        <Parameter ListName="GLOBALPARAMETERS" xmlns="">
+          <Key>MAXINGREDIENTS</Key>
+          <Value>10</Value>
+        </Parameter>
+        <Parameter ListName="GLOBALPARAMETERS" xmlns="">
+          <Key>MAXINGREDIENTPARAMETERS</Key>
+          <Value>10</Value>
+        </Parameter>
+        <Parameter ListName="GLOBALPARAMETERS" xmlns="">
+          <Key>MAXCOMMANDREMOTEINTERFACES</Key>
+          <Value>2</Value>
+        </Parameter>
+        <Parameter ListName="GLOBALPARAMETERS" xmlns="">
+          <Key>MAXCOMMANDPARAMETERS</Key>
+          <Value>10</Value>
+        </Parameter>
+        <Parameter ListName="GLOBALPARAMETERS" xmlns="">
+          <Key>MAXCOMMANDPRODUCTS</Key>
+          <Value>5</Value>
+        </Parameter>
+        <Parameter ListName="GLOBALPARAMETERS" xmlns="">
+          <Key>MAXSTATUSREMOTEINTERFACES</Key>
+          <Value>2</Value>
+        </Parameter>
+        <Parameter ListName="GLOBALPARAMETERS" xmlns="">
+          <Key>MAXSTATUSPARAMETERS</Key>
+          <Value>10</Value>
+        </Parameter>
+        <Parameter ListName="GLOBALPARAMETERS" xmlns="">
+          <Key>MAXSTATUSPRODUCTS</Key>
+          <Value>5</Value>
+        </Parameter>
+        <Parameter ListName="GLOBALPARAMETERS" xmlns="">
+          <Key>MAXADMINPARAMETERS</Key>
+          <Value>10</Value>
+        </Parameter>
+        <Parameter ListName="GLOBALPARAMETERS" xmlns="">
+          <Key>MAXALARMS</Key>
+          <Value>10</Value>
+        </Parameter>
+        <Parameter ListName="GLOBALPARAMETERS" xmlns="">
+          <Key>MAXHISTORYALARMS</Key>
+          <Value>10</Value>
+        </Parameter>
+        <Parameter ListName="GLOBALPARAMETERS" xmlns="">
+          <Key>MAXSTOPREASONS</Key>
+          <Value>10</Value>
+        </Parameter>
+        <Parameter ListName="GLOBALPARAMETERS" xmlns="">
+          <Key>MAXWARNINGS</Key>
+          <Value>10</Value>
+        </Parameter>
+        <Parameter ListName="GLOBALPARAMETERS" xmlns="">
+          <Key>MAXCONSUMEDCOUNTS</Key>
+          <Value>10</Value>
+        </Parameter>
+        <Parameter ListName="GLOBALPARAMETERS" xmlns="">
+          <Key>MAXPRODUCTCOUNTS</Key>
+          <Value>10</Value>
+        </Parameter>
+      </Parameters>
+    </PlaceholderReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="PLC.tmc">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ProjectExtensions>
+    <PlcProjectOptions>
+      <XmlArchive>
+        <Data>
+          <o xml:space="preserve" t="OptionKey">
+      <v n="Name">"&lt;ProjectRoot&gt;"</v>
+      <d n="SubKeys" t="Hashtable" />
+      <d n="Values" t="Hashtable" />
+    </o>
+        </Data>
+        <TypeList>
+          <Type n="Hashtable">System.Collections.Hashtable</Type>
+          <Type n="OptionKey">{54dd0eac-a6d8-46f2-8c27-2f43c7e49861}</Type>
+          <Type n="String">System.String</Type>
+        </TypeList>
+      </XmlArchive>
+    </PlcProjectOptions>
+  </ProjectExtensions>
+</Project>
