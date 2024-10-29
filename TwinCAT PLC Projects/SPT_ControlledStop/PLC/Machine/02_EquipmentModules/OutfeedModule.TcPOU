@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.13">
+  <POU Name="OutfeedModule" Id="{217672e2-776d-43db-a4bd-00471447b980}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK OutfeedModule EXTENDS FB_PackML_BaseModule
+VAR
+	testComplete : BOOL;
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Method Name="CyclicLogic" Id="{71472b5c-82e4-4981-b631-e99c50fd0cc2}">
+      <Declaration><![CDATA[//! @summary This method serves as the entry point for all underlying FB logic
+
+//! @description This method should be called cyclically by descendant function blocks by invoking <c>SUPER^.CyclicLogic()</c>.  Alternatively, the contents of this method could be reimplemented entirely in which case a call to this method would not be necessary.
+METHOD PUBLIC CyclicLogic
+VAR
+	i : UDINT;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF NOT _InitComplete THEN
+	_InitComplete := Initialize();
+	RETURN;
+END_IF
+
+SUPER^.CyclicLogic();
+
+//
+IF testComplete THEN
+	testComplete := FALSE;
+	Trace('Outfeed changing state to Complete');
+	ChangeState(State := E_PMLCommand.ePMLCommand_Complete);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="Initialize" Id="{1814c178-8629-4868-8222-3c7807509b08}">
+      <Declaration><![CDATA[//! @summary Basic module initialization logic
+METHOD PROTECTED Initialize : BOOL;
+VAR
+	i						 : UDINT;
+	varInfo					 : __SYSTEM.VAR_INFO;
+	AllSubUnitsInitialized	 : BOOL := TRUE;
+	AllComponentsInitialized : BOOL := TRUE;
+END_VAR
+
+//! @description This method is called by <c>CyclicLogic()</c> as required]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[Initialize := FALSE;
+CASE DescendantSequenceState OF
+	0: //Register Modules
+
+		//Register Components
+
+		//Setup Config
+		_LogModeChanges			:= FALSE;
+		_LogStateChanges		:= FALSE;
+		DescendantSequenceState := DescendantSequenceState + 10;
+
+	10: // Copy Mode names
+		FOR i := 1 TO 10 DO
+			ModeNames[i] := F_UnitModeToString(UDINT_TO_DINT(i));
+		END_FOR
+
+		DescendantSequenceState := DescendantSequenceState + 10;
+
+	20: // Call the Super 
+		IF SUPER^.Initialize() THEN
+			Initialize := TRUE;
+		END_IF
+END_CASE]]></ST>
+      </Implementation>
+    </Method>
+    <LineIds Name="OutfeedModule">
+      <LineId Id="9" Count="0" />
+    </LineIds>
+    <LineIds Name="OutfeedModule.CyclicLogic">
+      <LineId Id="64" Count="11" />
+      <LineId Id="33" Count="0" />
+    </LineIds>
+    <LineIds Name="OutfeedModule.Initialize">
+      <LineId Id="270" Count="21" />
+      <LineId Id="11" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>
