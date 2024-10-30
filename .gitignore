@@ -23,6 +23,10 @@ _Libraries/
 
 #tmc file - use ! to include specific tmc files for Alarms and Events
 *.tmc
+!ComponentEvents.tmc
+!EquipmentEvents.tmc
+!MachineEvents.tmc
+
 
 .engineering_servers/
 liveview_*
