@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<TcSmItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2012/07/TcSmProject" TcSmVersion="1.0" TcVersion="3.1.4024.60" ClassName="CNcSafTaskDef" SubType="0">
+	<NC>
+		<SafTask Priority="4" CycleTime="20000" AmsPort="501" IoAtBegin="true" SafTaskInfo="256">
+			<Name>NC-Task 1 SAF</Name>
+			<Vars VarGrpType="1" InsertType="1">
+				<Name>Inputs</Name>
+			</Vars>
+			<Vars VarGrpType="2" InsertType="1">
+				<Name>Outputs</Name>
+			</Vars>
+			<Image Id="1" AddrType="1" ImageType="1">
+				<Name>Image</Name>
+			</Image>
+		</SafTask>
+		<SvbTask Priority="8" CycleTime="100000" AmsPort="511">
+			<Name>NC-Task 1 SVB</Name>
+		</SvbTask>
+		<AxisFolder Name="Station 1"/>
+		<AxisFolder Name="Station 2"/>
+		<AxisFolder Name="Station 3"/>
+		<AxisFolder Name="Station 4"/>
+		<AxisFolder Name="Station 5"/>
+		<AxisFolder Name="Main Drive"/>
+		<Axis File="Fixed Axis.xti" Id="2"/>
+		<Axis File="Variable Axis.xti" Id="3"/>
+		<Axis File="Virtual Cammed Axis.xti" Id="4"/>
+		<Axis File="Cammed Axis.xti" Id="5"/>
+		<Axis File="Virtual Offset Master Axis 4.xti" Id="8"/>
+		<Axis File="Offset Axis.xti" Id="7"/>
+		<Axis File="Virtual Cammed Master Axis.xti" Id="9"/>
+		<Axis File="Cammed Offset Axis.xti" Id="10"/>
+		<Axis File="Virtual Offset Master Axis 5.xti" Id="6"/>
+		<Axis File="Machine Virtual Axis.xti" Id="1"/>
+		<Table Id="1" AxisId="1" MotionFunction="true" Maximum="360" MinIncr="1" Velocity="1" RoundValue="0.001" VelScale="1">
+			<Name>Master 1</Name>
+			<ImageId>137</ImageId>
+		</Table>
+	</NC>
+</TcSmItem>

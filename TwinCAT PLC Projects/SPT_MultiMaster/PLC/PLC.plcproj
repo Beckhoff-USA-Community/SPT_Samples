@@ -1,0 +1,535 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <FileVersion>1.0.0.0</FileVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{87c73892-87b1-4b7b-bcac-7d73a87144a2}</ProjectGuid>
+    <SubObjectsSortedByName>True</SubObjectsSortedByName>
+    <DownloadApplicationInfo>true</DownloadApplicationInfo>
+    <WriteProductVersion>true</WriteProductVersion>
+    <GenerateTpy>false</GenerateTpy>
+    <Name>PLC</Name>
+    <ProgramVersion>3.1.4024.0</ProgramVersion>
+    <Application>{d9aa617b-6565-42bd-b655-0590ada9eec8}</Application>
+    <TypeSystem>{b2d28940-fb49-4c50-b078-b127b1bd3087}</TypeSystem>
+    <Implicit_Task_Info>{facc6359-c4d6-44f8-b0ba-6ce343236859}</Implicit_Task_Info>
+    <Implicit_KindOfTask>{7a13bb62-c555-4b4a-8985-f601f012aabd}</Implicit_KindOfTask>
+    <Implicit_Jitter_Distribution>{ee1a3d1e-27fd-4983-9c28-7d3adddf0c6d}</Implicit_Jitter_Distribution>
+    <LibraryReferences>{cc0c6226-edc4-4158-85e6-3219b433f7e6}</LibraryReferences>
+    <Released>false</Released>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="GlobalTextList.TcGTLO">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Machine\EquipmentModules\FB_MainDrive.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Machine\EquipmentModules\FB_Station1.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Machine\EquipmentModules\FB_Station2.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Machine\EquipmentModules\FB_Station3.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Machine\EquipmentModules\FB_Station4.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Machine\EquipmentModules\FB_Station5.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Machine\MachineModule\FB_Machine.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="PlcTask.TcTTO">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\MAIN.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Visualization Manager.TcVMO">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="VISUs\V_Operation.TcVIS">
+      <SubType>Code</SubType>
+      <DependentUpon>Visualization Manager.TcVMO</DependentUpon>
+    </Compile>
+    <Compile Include="VISUs\V_Machine.TcVIS">
+      <SubType>Code</SubType>
+      <DependentUpon>Visualization Manager.TcVMO</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Machine" />
+    <Folder Include="Machine\MachineModule" />
+    <Folder Include="Machine\EquipmentModules" />
+    <Folder Include="VISUs" />
+    <Folder Include="POUs" />
+  </ItemGroup>
+  <ItemGroup>
+    <PlaceholderReference Include="System_VisuElemMeter">
+      <DefaultResolution>VisuElemMeter, 3.5.13.0 (System)</DefaultResolution>
+      <Namespace>VisuElemMeter</Namespace>
+      <SystemLibrary>true</SystemLibrary>
+      <ResolverGuid>2717eb6a-dd07-4c66-8d8d-cacebd7b18ae</ResolverGuid>
+    </PlaceholderReference>
+    <PlaceholderReference Include="System_VisuElems">
+      <DefaultResolution>VisuElems, 3.5.13.40 (System)</DefaultResolution>
+      <Namespace>VisuElems</Namespace>
+      <SystemLibrary>true</SystemLibrary>
+      <ResolverGuid>2717eb6a-dd07-4c66-8d8d-cacebd7b18ae</ResolverGuid>
+    </PlaceholderReference>
+    <PlaceholderReference Include="System_VisuElemsSpecialControls">
+      <DefaultResolution>VisuElemsSpecialControls, 3.5.13.0 (System)</DefaultResolution>
+      <Namespace>VisuElemsSpecialControls</Namespace>
+      <SystemLibrary>true</SystemLibrary>
+      <ResolverGuid>2717eb6a-dd07-4c66-8d8d-cacebd7b18ae</ResolverGuid>
+    </PlaceholderReference>
+    <PlaceholderReference Include="System_VisuElemsWinControls">
+      <DefaultResolution>VisuElemsWinControls, 3.5.13.20 (System)</DefaultResolution>
+      <Namespace>VisuElemsWinControls</Namespace>
+      <SystemLibrary>true</SystemLibrary>
+      <ResolverGuid>2717eb6a-dd07-4c66-8d8d-cacebd7b18ae</ResolverGuid>
+    </PlaceholderReference>
+    <PlaceholderReference Include="System_VisuElemTextEditor">
+      <DefaultResolution>VisuElemTextEditor, 3.5.13.0 (System)</DefaultResolution>
+      <Namespace>VisuElemTextEditor</Namespace>
+      <SystemLibrary>true</SystemLibrary>
+      <ResolverGuid>2717eb6a-dd07-4c66-8d8d-cacebd7b18ae</ResolverGuid>
+    </PlaceholderReference>
+    <PlaceholderReference Include="system_visuinputs">
+      <DefaultResolution>visuinputs, 3.5.13.0 (system)</DefaultResolution>
+      <Namespace>visuinputs</Namespace>
+      <SystemLibrary>true</SystemLibrary>
+      <ResolverGuid>2717eb6a-dd07-4c66-8d8d-cacebd7b18ae</ResolverGuid>
+    </PlaceholderReference>
+    <PlaceholderReference Include="System_VisuNativeControl">
+      <DefaultResolution>VisuNativeControl, 3.5.13.0 (System)</DefaultResolution>
+      <Namespace>VisuNativeControl</Namespace>
+      <SystemLibrary>true</SystemLibrary>
+      <ResolverGuid>2717eb6a-dd07-4c66-8d8d-cacebd7b18ae</ResolverGuid>
+    </PlaceholderReference>
+    <PlaceholderReference Include="Tc2_MC2_Camming">
+      <DefaultResolution>Tc2_MC2_Camming, * (Beckhoff Automation GmbH)</DefaultResolution>
+      <Namespace>Tc2_MC2_Camming</Namespace>
+    </PlaceholderReference>
+    <PlaceholderReference Include="Tc2_Standard">
+      <DefaultResolution>Tc2_Standard, * (Beckhoff Automation GmbH)</DefaultResolution>
+      <Namespace>Tc2_Standard</Namespace>
+    </PlaceholderReference>
+    <PlaceholderReference Include="Tc2_System">
+      <DefaultResolution>Tc2_System, * (Beckhoff Automation GmbH)</DefaultResolution>
+      <Namespace>Tc2_System</Namespace>
+      <Parameters>
+        <Parameter ListName="PARAM" xmlns="">
+          <Key>TABLE_UPPER_BOUND</Key>
+          <Value>15</Value>
+        </Parameter>
+        <Parameter ListName="PARAM" xmlns="">
+          <Key>STRING_LENGTH_EXP</Key>
+          <Value>255</Value>
+        </Parameter>
+        <Parameter ListName="PARAM" xmlns="">
+          <Key>STRING_LENGTH_ADDRESS</Key>
+          <Value>20</Value>
+        </Parameter>
+        <Parameter ListName="PARAM" xmlns="">
+          <Key>STRING_LENGTH_COMMENT</Key>
+          <Value>255</Value>
+        </Parameter>
+        <Parameter ListName="PARAM" xmlns="">
+          <Key>STRING_LENGTH_OUTSTRING</Key>
+          <Value>255</Value>
+        </Parameter>
+        <Parameter ListName="PARAM" xmlns="">
+          <Key>TABLE_SHOW_VALID_ITEMS</Key>
+          <Value>FALSE</Value>
+        </Parameter>
+      </Parameters>
+    </PlaceholderReference>
+    <PlaceholderReference Include="Tc3_Module">
+      <DefaultResolution>Tc3_Module, * (Beckhoff Automation GmbH)</DefaultResolution>
+      <Namespace>Tc3_Module</Namespace>
+    </PlaceholderReference>
+    <PlaceholderReference Include="VisuDialogs">
+      <DefaultResolution>VisuDialogs, * (System)</DefaultResolution>
+      <Namespace>VisuDialogs</Namespace>
+    </PlaceholderReference>
+  </ItemGroup>
+  <ItemGroup>
+    <LibraryReference Include="SPT Base Types,newest,Beckhoff Automation LLC">
+      <Namespace>SPT_BaseTypes</Namespace>
+      <Parameters>
+        <Parameter ListName="PARAMETERS_BASECOMPONENT" xmlns="">
+          <Key>COMPONENT_BASE_ALARM_COUNT</Key>
+          <Value>2</Value>
+        </Parameter>
+        <Parameter ListName="PARAMETERS_BASECOMPONENT" xmlns="">
+          <Key>INHIBIT_SIMULATION_WARNING</Key>
+          <Value>FALSE</Value>
+        </Parameter>
+        <Parameter ListName="PARAMETERS_PACKML_BASE" xmlns="">
+          <Key>MAX_NO_OF_SUBMODULES</Key>
+          <Value>20</Value>
+        </Parameter>
+        <Parameter ListName="PARAMETERS_PACKML_BASE" xmlns="">
+          <Key>MAX_NO_OF_COMPONENTS</Key>
+          <Value>32</Value>
+        </Parameter>
+        <Parameter ListName="PARAMETERS_PACKML_BASE" xmlns="">
+          <Key>MAX_NO_OF_EXTERNAL_CONTROLLERS</Key>
+          <Value>10</Value>
+        </Parameter>
+        <Parameter ListName="PARAMETERS_PACKML_BASE" xmlns="">
+          <Key>UNIT_MODE_DEFAULT</Key>
+          <Value>E_PMLUnitMode.ePMLUnitMode_Production</Value>
+        </Parameter>
+        <Parameter ListName="PARAMETERS_PACKML_BASE" xmlns="">
+          <Key>UNIT_STATE_DEFAULT</Key>
+          <Value>E_PMLCommand.ePMLCommand_Abort</Value>
+        </Parameter>
+        <Parameter ListName="PARAMETERS_PACKML_BASE" xmlns="">
+          <Key>CONCAT_SUBMODULE_NAME_WITH_PARENT</Key>
+          <Value>FALSE</Value>
+        </Parameter>
+        <Parameter ListName="PARAMETERS_PACKML_BASE" xmlns="">
+          <Key>CONCAT_COMPONENT_NAME_WITH_PARENT</Key>
+          <Value>TRUE</Value>
+        </Parameter>
+        <Parameter ListName="PARAMETERS_PACKML_BASE" xmlns="">
+          <Key>SUBMODULE_NAME_DELIMETER</Key>
+          <Value>' '</Value>
+        </Parameter>
+        <Parameter ListName="PARAMETERS_PACKML_BASE" xmlns="">
+          <Key>COMPONENT_NAME_DELIMETER</Key>
+          <Value>' '</Value>
+        </Parameter>
+        <Parameter ListName="PARAMETERS_PACKML_BASE" xmlns="">
+          <Key>STATELOGGER_DISABLED</Key>
+          <Value>FALSE</Value>
+        </Parameter>
+        <Parameter ListName="PARAMETERS_PACKML_BASE" xmlns="">
+          <Key>RESET_COMPONENTS_WITHOUT_ERROR</Key>
+          <Value>FALSE</Value>
+        </Parameter>
+        <Parameter ListName="PARAMETERS_TRACING" xmlns="">
+          <Key>TRACING_ENABLED</Key>
+          <Value>TRUE</Value>
+        </Parameter>
+        <Parameter ListName="PARAMETERS_TRACING" xmlns="">
+          <Key>MAX_LOG_ENTRIES_PER_SCAN</Key>
+          <Value>100</Value>
+        </Parameter>
+        <Parameter ListName="PARAMETERS_TRACING" xmlns="">
+          <Key>ALLOW_DUPLICATE_SEQUENTIAL_MESSAGES</Key>
+          <Value>FALSE</Value>
+        </Parameter>
+      </Parameters>
+    </LibraryReference>
+    <LibraryReference Include="SPT Components,newest,Beckhoff Automation LLC">
+      <Namespace>SPT_Components</Namespace>
+      <Parameters>
+        <Parameter ListName="PARAMETERS_MODBUSRTU" xmlns="">
+          <Key>MAX_MODBUS_REQUESTS</Key>
+          <Value>100</Value>
+        </Parameter>
+        <Parameter ListName="PARAMETERS_MODBUSRTU" xmlns="">
+          <Key>MAX_MODBUS_RW_OPS_PER_REQUEST</Key>
+          <Value>100</Value>
+        </Parameter>
+        <Parameter ListName="PARAMETERS_MODBUSRTU" xmlns="">
+          <Key>MODBUS_TIMEOUT</Key>
+          <Value>TIME#100ms</Value>
+        </Parameter>
+        <Parameter ListName="PARAMETERS_CYLINDER" xmlns="">
+          <Key>MAX_NUMBER_OF_SOLENOIDS</Key>
+          <Value>32</Value>
+        </Parameter>
+      </Parameters>
+    </LibraryReference>
+    <LibraryReference Include="SPT Event Logger,newest,Beckhoff Automation LLC">
+      <Namespace>SPT_EventLogger</Namespace>
+    </LibraryReference>
+    <LibraryReference Include="SPT Motion Control,newest,Beckhoff Automation LLC">
+      <Namespace>SPT_Motion_Control</Namespace>
+      <Parameters>
+        <Parameter ListName="PARAMETERS_MOTIONCONTROL" xmlns="">
+          <Key>ALLOW_UNLINKED_NC_AXES</Key>
+          <Value>FALSE</Value>
+        </Parameter>
+        <Parameter ListName="PARAMETERS_MOTIONCONTROL" xmlns="">
+          <Key>CAM_SLAVE_AXIS_TABLES</Key>
+          <Value>10</Value>
+        </Parameter>
+        <Parameter ListName="PARAMETERS_MOTIONCONTROL" xmlns="">
+          <Key>CAM_SLAVE_AXIS_MAX_CAM_POINTS</Key>
+          <Value>30</Value>
+        </Parameter>
+        <Parameter ListName="PARAMETERS_MOTIONCONTROL" xmlns="">
+          <Key>ALWAYS_CALL_IPRESETMETHOD_ON_RESET</Key>
+          <Value>FALSE</Value>
+        </Parameter>
+      </Parameters>
+    </LibraryReference>
+    <LibraryReference Include="SPT Utilities,newest,Beckhoff Automation LLC">
+      <Namespace>SPT_Utilities</Namespace>
+    </LibraryReference>
+    <LibraryReference Include="Tc2_EtherCAT,newest,Beckhoff Automation GmbH">
+      <Namespace>Tc2_EtherCAT</Namespace>
+    </LibraryReference>
+    <LibraryReference Include="Tc2_Math,newest,Beckhoff Automation GmbH">
+      <Namespace>Tc2_Math</Namespace>
+    </LibraryReference>
+    <LibraryReference Include="Tc2_MC2,newest,Beckhoff Automation GmbH">
+      <Namespace>Tc2_MC2</Namespace>
+    </LibraryReference>
+    <LibraryReference Include="Tc2_MC2_Drive,newest,Beckhoff Automation GmbH">
+      <Namespace>Tc2_MC2_Drive</Namespace>
+    </LibraryReference>
+    <LibraryReference Include="Tc2_Utilities,newest,Beckhoff Automation GmbH">
+      <Namespace>Tc2_Utilities</Namespace>
+      <Parameters>
+        <Parameter ListName="PARAMETERLIST" xmlns="">
+          <Key>NMAXLICENSES</Key>
+          <Value>50</Value>
+        </Parameter>
+        <Parameter ListName="PARAMETERLIST" xmlns="">
+          <Key>NMAXLICENSEDEVICES</Key>
+          <Value>16</Value>
+        </Parameter>
+        <Parameter ListName="PARAMETERLIST" xmlns="">
+          <Key>NMAXCPUCOUNT</Key>
+          <Value>64</Value>
+        </Parameter>
+        <Parameter ListName="PARAMETERLIST" xmlns="">
+          <Key>CMAXCHARACTERS</Key>
+          <Value>16#FFFFFFF0</Value>
+        </Parameter>
+        <Parameter ListName="PARAMETERLIST" xmlns="">
+          <Key>NMAXFILESONDONGLE</Key>
+          <Value>20</Value>
+        </Parameter>
+        <Parameter ListName="PARAMETERLIST" xmlns="">
+          <Key>CMAXCSVFIELDVALUESIZE</Key>
+          <Value>255</Value>
+        </Parameter>
+      </Parameters>
+    </LibraryReference>
+    <LibraryReference Include="Tc3_EventLogger,newest,Beckhoff Automation GmbH">
+      <Namespace>Tc3_EventLogger</Namespace>
+      <Parameters>
+        <Parameter ListName="PARAMETERLIST" xmlns="">
+          <Key>CSOURCENAMESIZE</Key>
+          <Value>256</Value>
+        </Parameter>
+      </Parameters>
+    </LibraryReference>
+    <LibraryReference Include="Tc3_IPCDiag,newest,Beckhoff Automation GmbH">
+      <Namespace>Tc3_IPCDiag</Namespace>
+    </LibraryReference>
+    <LibraryReference Include="Tc3_JsonXml,newest,Beckhoff Automation GmbH">
+      <Namespace>Tc3_JsonXml</Namespace>
+    </LibraryReference>
+    <LibraryReference Include="Tc3_MC2_AdvancedHoming,newest,Beckhoff Automation GmbH">
+      <Namespace>Tc3_MC2_AdvancedHoming</Namespace>
+    </LibraryReference>
+    <LibraryReference Include="Tc3_PackML_V2,newest,Beckhoff Automation GmbH">
+      <Namespace>Tc3_PackML_V2</Namespace>
+      <Parameters>
+        <Parameter ListName="GLOBALPARAMETERS" xmlns="">
+          <Key>MAXINTERFACEPARAMETERS</Key>
+          <Value>5</Value>
+        </Parameter>
+        <Parameter ListName="GLOBALPARAMETERS" xmlns="">
+          <Key>MAXPRODUCTPROCESSVARIABLES</Key>
+          <Value>10</Value>
+        </Parameter>
+        <Parameter ListName="GLOBALPARAMETERS" xmlns="">
+          <Key>MAXINGREDIENTS</Key>
+          <Value>10</Value>
+        </Parameter>
+        <Parameter ListName="GLOBALPARAMETERS" xmlns="">
+          <Key>MAXINGREDIENTPARAMETERS</Key>
+          <Value>10</Value>
+        </Parameter>
+        <Parameter ListName="GLOBALPARAMETERS" xmlns="">
+          <Key>MAXCOMMANDREMOTEINTERFACES</Key>
+          <Value>2</Value>
+        </Parameter>
+        <Parameter ListName="GLOBALPARAMETERS" xmlns="">
+          <Key>MAXCOMMANDPARAMETERS</Key>
+          <Value>10</Value>
+        </Parameter>
+        <Parameter ListName="GLOBALPARAMETERS" xmlns="">
+          <Key>MAXCOMMANDPRODUCTS</Key>
+          <Value>5</Value>
+        </Parameter>
+        <Parameter ListName="GLOBALPARAMETERS" xmlns="">
+          <Key>MAXSTATUSREMOTEINTERFACES</Key>
+          <Value>2</Value>
+        </Parameter>
+        <Parameter ListName="GLOBALPARAMETERS" xmlns="">
+          <Key>MAXSTATUSPARAMETERS</Key>
+          <Value>10</Value>
+        </Parameter>
+        <Parameter ListName="GLOBALPARAMETERS" xmlns="">
+          <Key>MAXSTATUSPRODUCTS</Key>
+          <Value>5</Value>
+        </Parameter>
+        <Parameter ListName="GLOBALPARAMETERS" xmlns="">
+          <Key>MAXADMINPARAMETERS</Key>
+          <Value>10</Value>
+        </Parameter>
+        <Parameter ListName="GLOBALPARAMETERS" xmlns="">
+          <Key>MAXALARMS</Key>
+          <Value>10</Value>
+        </Parameter>
+        <Parameter ListName="GLOBALPARAMETERS" xmlns="">
+          <Key>MAXHISTORYALARMS</Key>
+          <Value>10</Value>
+        </Parameter>
+        <Parameter ListName="GLOBALPARAMETERS" xmlns="">
+          <Key>MAXSTOPREASONS</Key>
+          <Value>10</Value>
+        </Parameter>
+        <Parameter ListName="GLOBALPARAMETERS" xmlns="">
+          <Key>MAXWARNINGS</Key>
+          <Value>10</Value>
+        </Parameter>
+        <Parameter ListName="GLOBALPARAMETERS" xmlns="">
+          <Key>MAXCONSUMEDCOUNTS</Key>
+          <Value>10</Value>
+        </Parameter>
+        <Parameter ListName="GLOBALPARAMETERS" xmlns="">
+          <Key>MAXPRODUCTCOUNTS</Key>
+          <Value>10</Value>
+        </Parameter>
+      </Parameters>
+    </LibraryReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="PLC.tmc">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ProjectExtensions>
+    <PlcProjectOptions>
+      <XmlArchive>
+        <Data>
+          <o xml:space="preserve" t="OptionKey">
+      <v n="Name">"&lt;ProjectRoot&gt;"</v>
+      <d n="SubKeys" t="Hashtable" ckt="String" cvt="OptionKey">
+        <v>{192FAD59-8248-4824-A8DE-9177C94C195A}</v>
+        <o>
+          <v n="Name">"{192FAD59-8248-4824-A8DE-9177C94C195A}"</v>
+          <d n="SubKeys" t="Hashtable" />
+          <d n="Values" t="Hashtable" />
+        </o>
+        <v>{246001F4-279D-43AC-B241-948EB31120E1}</v>
+        <o>
+          <v n="Name">"{246001F4-279D-43AC-B241-948EB31120E1}"</v>
+          <d n="SubKeys" t="Hashtable" />
+          <d n="Values" t="Hashtable" ckt="String" cvt="Boolean">
+            <v>UnicodeStrings</v>
+            <v>False</v>
+          </d>
+        </o>
+        <v>{29BD8D0C-3586-4548-BB48-497B9A01693F}</v>
+        <o>
+          <v n="Name">"{29BD8D0C-3586-4548-BB48-497B9A01693F}"</v>
+          <d n="SubKeys" t="Hashtable" ckt="String" cvt="OptionKey">
+            <v>Rules</v>
+            <o>
+              <v n="Name">"Rules"</v>
+              <d n="SubKeys" t="Hashtable" ckt="String" cvt="OptionKey">
+                <v>167</v>
+                <o>
+                  <v n="Name">"167"</v>
+                  <d n="SubKeys" t="Hashtable" />
+                  <d n="Values" t="Hashtable" ckt="String" cvt="Boolean">
+                    <v>bActive</v>
+                    <v>False</v>
+                  </d>
+                </o>
+                <v>4</v>
+                <o>
+                  <v n="Name">"4"</v>
+                  <d n="SubKeys" t="Hashtable" />
+                  <d n="Values" t="Hashtable" ckt="String" cvt="Boolean">
+                    <v>bActive</v>
+                    <v>False</v>
+                  </d>
+                </o>
+                <v>33</v>
+                <o>
+                  <v n="Name">"33"</v>
+                  <d n="SubKeys" t="Hashtable" />
+                  <d n="Values" t="Hashtable" ckt="String" cvt="Boolean">
+                    <v>bActive</v>
+                    <v>False</v>
+                  </d>
+                </o>
+                <v>6</v>
+                <o>
+                  <v n="Name">"6"</v>
+                  <d n="SubKeys" t="Hashtable" />
+                  <d n="Values" t="Hashtable" ckt="String" cvt="Boolean">
+                    <v>bActive</v>
+                    <v>False</v>
+                  </d>
+                </o>
+                <v>27</v>
+                <o>
+                  <v n="Name">"27"</v>
+                  <d n="SubKeys" t="Hashtable" />
+                  <d n="Values" t="Hashtable" ckt="String" cvt="Boolean">
+                    <v>bActive</v>
+                    <v>False</v>
+                  </d>
+                </o>
+                <v>28</v>
+                <o>
+                  <v n="Name">"28"</v>
+                  <d n="SubKeys" t="Hashtable" />
+                  <d n="Values" t="Hashtable" ckt="String" cvt="Boolean">
+                    <v>bActive</v>
+                    <v>False</v>
+                  </d>
+                </o>
+              </d>
+              <d n="Values" t="Hashtable" />
+            </o>
+          </d>
+          <d n="Values" t="Hashtable" />
+        </o>
+        <v>{40450F57-0AA3-4216-96F3-5444ECB29763}</v>
+        <o>
+          <v n="Name">"{40450F57-0AA3-4216-96F3-5444ECB29763}"</v>
+          <d n="SubKeys" t="Hashtable" />
+          <d n="Values" t="Hashtable" ckt="String" cvt="String">
+            <v>ActiveVisuProfile</v>
+            <v>IR0whWr8bwfwBwAAiD2qpQAAAABVAgAA37x72QAAAAABAAAAAAAAAAEaUwB5AHMAdABlAG0ALgBTAHQAcgBpAG4AZwACTHsAZgA5ADUAYgBiADQAMgA2AC0ANQA1ADIANAAtADQAYgA0ADUALQA5ADQAMAAwAC0AZgBiADAAZgAyAGUANwA3AGUANQAxAGIAfQADCE4AYQBtAGUABDBUAHcAaQBuAEMAQQBUACAAMwAuADEAIABCAHUAaQBsAGQAIAA0ADAAMgA0AC4ANwAFFlAAcgBvAGYAaQBsAGUARABhAHQAYQAGTHsAMQA2AGUANQA1AGIANgAwAC0ANwAwADQAMwAtADQAYQA2ADMALQBiADYANQBiAC0ANgAxADQANwAxADMAOAA3ADgAZAA0ADIAfQAHEkwAaQBiAHIAYQByAGkAZQBzAAhMewAzAGIAZgBkADUANAA1ADkALQBiADAANwBmAC0ANABkADYAZQAtAGEAZQAxAGEALQBhADgAMwAzADUANgBhADUANQAxADQAMgB9AAlMewA5AGMAOQA1ADgAOQA2ADgALQAyAGMAOAA1AC0ANAAxAGIAYgAtADgAOAA3ADEALQA4ADkANQBmAGYAMQBmAGUAZABlADEAYQB9AAoOVgBlAHIAcwBpAG8AbgALBmkAbgB0AAwKVQBzAGEAZwBlAA0KVABpAHQAbABlAA4aVgBpAHMAdQBFAGwAZQBtAE0AZQB0AGUAcgAPDkMAbwBtAHAAYQBuAHkAEAxTAHkAcwB0AGUAbQARElYAaQBzAHUARQBsAGUAbQBzABIwVgBpAHMAdQBFAGwAZQBtAHMAUwBwAGUAYwBpAGEAbABDAG8AbgB0AHIAbwBsAHMAEyhWAGkAcwB1AEUAbABlAG0AcwBXAGkAbgBDAG8AbgB0AHIAbwBsAHMAFCRWAGkAcwB1AEUAbABlAG0AVABlAHgAdABFAGQAaQB0AG8AcgAVIlYAaQBzAHUATgBhAHQAaQB2AGUAQwBvAG4AdAByAG8AbAAWFHYAaQBzAHUAaQBuAHAAdQB0AHMAFwxzAHkAcwB0AGUAbQAYGFYAaQBzAHUARQBsAGUAbQBCAGEAcwBlABkmRABlAHYAUABsAGEAYwBlAGgAbwBsAGQAZQByAHMAVQBzAGUAZAAaCGIAbwBvAGwAGyJQAGwAdQBnAGkAbgBDAG8AbgBzAHQAcgBhAGkAbgB0AHMAHEx7ADQAMwBkADUAMgBiAGMAZQAtADkANAAyAGMALQA0ADQAZAA3AC0AOQBlADkANAAtADEAYgBmAGQAZgAzADEAMABlADYAMwBjAH0AHRxBAHQATABlAGEAcwB0AFYAZQByAHMAaQBvAG4AHhRQAGwAdQBnAGkAbgBHAHUAaQBkAB8WUwB5AHMAdABlAG0ALgBHAHUAaQBkACBIYQBmAGMAZAA1ADQANAA2AC0ANAA5ADEANAAtADQAZgBlADcALQBiAGIANwA4AC0AOQBiAGYAZgBlAGIANwAwAGYAZAAxADcAIRRVAHAAZABhAHQAZQBJAG4AZgBvACJMewBiADAAMwAzADYANgBhADgALQBiADUAYwAwAC0ANABiADkAYQAtAGEAMAAwAGUALQBlAGIAOAA2ADAAMQAxADEAMAA0AGMAMwB9ACMOVQBwAGQAYQB0AGUAcwAkTHsAMQA4ADYAOABmAGYAYwA5AC0AZQA0AGYAYwAtADQANQAzADIALQBhAGMAMAA2AC0AMQBlADMAOQBiAGIANQA1ADcAYgA2ADkAfQAlTHsAYQA1AGIAZAA0ADgAYwAzAC0AMABkADEANwAtADQAMQBiADUALQBiADEANgA0AC0ANQBmAGMANgBhAGQAMgBiADkANgBiADcAfQAmFk8AYgBqAGUAYwB0AHMAVAB5AHAAZQAnVFUAcABkAGEAdABlAEwAYQBuAGcAdQBhAGcAZQBNAG8AZABlAGwARgBvAHIAQwBvAG4AdgBlAHIAdABpAGIAbABlAEwAaQBiAHIAYQByAGkAZQBzACgQTABpAGIAVABpAHQAbABlACkUTABpAGIAQwBvAG0AcABhAG4AeQAqHlUAcABkAGEAdABlAFAAcgBvAHYAaQBkAGUAcgBzACs4UwB5AHMAdABlAG0ALgBDAG8AbABsAGUAYwB0AGkAbwBuAHMALgBIAGEAcwBoAHQAYQBiAGwAZQAsEnYAaQBzAHUAZQBsAGUAbQBzAC1INgBjAGIAMQBjAGQAZQAxAC0AZAA1AGQAYwAtADQAYQAzAGIALQA5ADAANQA0AC0AMgAxAGYAYQA3ADUANgBhADMAZgBhADQALihJAG4AdABlAHIAZgBhAGMAZQBWAGUAcgBzAGkAbwBuAEkAbgBmAG8AL0x7AGMANgAxADEAZQA0ADAAMAAtADcAZgBiADkALQA0AGMAMwA1AC0AYgA5AGEAYwAtADQAZQAzADEANABiADUAOQA5ADYANAAzAH0AMBhNAGEAagBvAHIAVgBlAHIAcwBpAG8AbgAxGE0AaQBuAG8AcgBWAGUAcgBzAGkAbwBuADIMTABlAGcAYQBjAHkAMzBMAGEAbgBnAHUAYQBnAGUATQBvAGQAZQBsAFYAZQByAHMAaQBvAG4ASQBuAGYAbwA0MEwAbwBhAGQATABpAGIAcgBhAHIAaQBlAHMASQBuAHQAbwBQAHIAbwBqAGUAYwB0ADUaQwBvAG0AcABhAHQAaQBiAGkAbABpAHQAeQDQAAIaA9ADAS0E0AUGGgfQBwgaAUUHCQjQAAkaBEUKCwQDAAAABQAAAA0AAAAAAAAA0AwLrQIAAADQDQEtDtAPAS0Q0AAJGgRFCgsEAwAAAAUAAAANAAAAKAAAANAMC60BAAAA0A0BLRHQDwEtENAACRoERQoLBAMAAAAFAAAADQAAAAAAAADQDAutAgAAANANAS0S0A8BLRDQAAkaBEUKCwQDAAAABQAAAA0AAAAUAAAA0AwLrQIAAADQDQEtE9APAS0Q0AAJGgRFCgsEAwAAAAUAAAANAAAAAAAAANAMC60CAAAA0A0BLRTQDwEtENAACRoERQoLBAMAAAAFAAAADQAAAAAAAADQDAutAgAAANANAS0V0A8BLRDQAAkaBEUKCwQDAAAABQAAAA0AAAAAAAAA0AwLrQIAAADQDQEtFtAPAS0X0AAJGgRFCgsEAwAAAAUAAAANAAAAKAAAANAMC60EAAAA0A0BLRjQDwEtENAZGq0BRRscAdAAHBoCRR0LBAMAAAAFAAAADQAAAAAAAADQHh8tINAhIhoCRSMkAtAAJRoFRQoLBAMAAAADAAAAAAAAAAoAAADQJgutAAAAANADAS0n0CgBLRHQKQEtENAAJRoFRQoLBAMAAAADAAAAAAAAAAoAAADQJgutAQAAANADAS0n0CgBLRHQKQEtEJoqKwFFAAEC0AABLSzQAAEtF9AAHy0t0C4vGgPQMAutAQAAANAxC60XAAAA0DIarQDQMy8aA9AwC60CAAAA0DELrQMAAADQMhqtANA0Gq0A0DUarQA=</v>
+          </d>
+        </o>
+        <v>{F66C7017-BDD8-4114-926C-81D6D687E35F}</v>
+        <o>
+          <v n="Name">"{F66C7017-BDD8-4114-926C-81D6D687E35F}"</v>
+          <d n="SubKeys" t="Hashtable" />
+          <d n="Values" t="Hashtable" />
+        </o>
+      </d>
+      <d n="Values" t="Hashtable" />
+    </o>
+        </Data>
+        <TypeList>
+          <Type n="Boolean">System.Boolean</Type>
+          <Type n="Hashtable">System.Collections.Hashtable</Type>
+          <Type n="OptionKey">{54dd0eac-a6d8-46f2-8c27-2f43c7e49861}</Type>
+          <Type n="String">System.String</Type>
+        </TypeList>
+      </XmlArchive>
+    </PlcProjectOptions>
+  </ProjectExtensions>
+</Project>
