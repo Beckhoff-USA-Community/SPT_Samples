@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.13">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
   <POU Name="FB_Machine" Id="{b5457780-1c44-4e83-aa46-5485e68808f8}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK FB_Machine EXTENDS FB_PackML_BaseModule
 VAR
@@ -65,6 +65,15 @@ IF abortExternal THEN
 END_IF]]></ST>
       </Implementation>
     </Method>
+    <Method Name="HMIPermissions" Id="{e11bdbbf-8028-4a8a-8c22-10590a9a76ee}">
+      <Declaration><![CDATA[// Automatically enables and disables HMI control based on the PackML mode
+METHOD PROTECTED HMIPermissions
+
+// This method is called cyclically by CyclicLogic()]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[AllowHMIControl(ThisModuleOnly := TRUE);]]></ST>
+      </Implementation>
+    </Method>
     <Method Name="Initialize" Id="{798219fb-53fc-4b1e-94ef-0cc86517e444}">
       <Declaration><![CDATA[METHOD PROTECTED Initialize : BOOL;
 VAR
@@ -110,24 +119,5 @@ END_CASE
 SUPER^.Starting();]]></ST>
       </Implementation>
     </Method>
-    <LineIds Name="FB_Machine">
-      <LineId Id="9" Count="0" />
-    </LineIds>
-    <LineIds Name="FB_Machine.CyclicLogic">
-      <LineId Id="23" Count="4" />
-      <LineId Id="8" Count="0" />
-    </LineIds>
-    <LineIds Name="FB_Machine.Execute">
-      <LineId Id="390" Count="30" />
-      <LineId Id="239" Count="0" />
-    </LineIds>
-    <LineIds Name="FB_Machine.Initialize">
-      <LineId Id="44" Count="9" />
-      <LineId Id="11" Count="0" />
-    </LineIds>
-    <LineIds Name="FB_Machine.Starting">
-      <LineId Id="135" Count="18" />
-      <LineId Id="26" Count="0" />
-    </LineIds>
   </POU>
 </TcPlcObject>

@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.13">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
   <POU Name="FB_ReversingSequence" Id="{9caf3fe3-21c0-4675-baef-5e228678bdb8}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK FB_ReversingSequence EXTENDS FB_CyclicFB IMPLEMENTS I_MotionSequence
 VAR
@@ -116,7 +116,7 @@ Execute		 := TRUE;]]></ST>
       </Implementation>
     </Method>
     <Property Name="IdleTime" Id="{200a7173-147e-429e-a882-13f8ca3643b9}">
-      <Declaration><![CDATA[PROPERTY IdleTime : int]]></Declaration>
+      <Declaration><![CDATA[PROPERTY IdleTime : INT]]></Declaration>
       <Get Name="Get" Id="{f1c502b6-5e92-42f1-a456-68dbe9967d29}">
         <Declaration><![CDATA[VAR
 END_VAR]]></Declaration>
@@ -133,7 +133,7 @@ END_VAR]]></Declaration>
       </Set>
     </Property>
     <Property Name="Position1" Id="{9433b65f-1b4e-4ceb-ab64-28c96f2b2fd9}">
-      <Declaration><![CDATA[PROPERTY Position1 : lreal]]></Declaration>
+      <Declaration><![CDATA[PROPERTY Position1 : LREAL]]></Declaration>
       <Get Name="Get" Id="{d6713a58-aa0d-4560-87d5-6bb1ef3efc65}">
         <Declaration><![CDATA[VAR
 END_VAR]]></Declaration>
@@ -150,7 +150,7 @@ END_VAR]]></Declaration>
       </Set>
     </Property>
     <Property Name="Position2" Id="{348dd7c4-c219-47d6-ae59-d1583256a385}">
-      <Declaration><![CDATA[PROPERTY Position2 : lreal]]></Declaration>
+      <Declaration><![CDATA[PROPERTY Position2 : LREAL]]></Declaration>
       <Get Name="Get" Id="{43e72b6a-3e4d-496d-95f5-10f8c3f9e57b}">
         <Declaration><![CDATA[VAR
 END_VAR]]></Declaration>
@@ -177,7 +177,7 @@ Stop := TRUE;]]></ST>
       </Implementation>
     </Method>
     <Property Name="Velocity" Id="{266c92e2-1277-433c-996b-a87d45ce722c}">
-      <Declaration><![CDATA[PROPERTY Velocity : lreal]]></Declaration>
+      <Declaration><![CDATA[PROPERTY Velocity : LREAL]]></Declaration>
       <Get Name="Get" Id="{09d71f05-0202-416d-93d3-84acdce3dd22}">
         <Declaration><![CDATA[VAR
 END_VAR]]></Declaration>
@@ -193,50 +193,5 @@ END_VAR]]></Declaration>
         </Implementation>
       </Set>
     </Property>
-    <LineIds Name="FB_ReversingSequence">
-      <LineId Id="9" Count="0" />
-    </LineIds>
-    <LineIds Name="FB_ReversingSequence.Axis.Get">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="FB_ReversingSequence.Axis.Set">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="FB_ReversingSequence.CyclicLogic">
-      <LineId Id="1014" Count="57" />
-      <LineId Id="4" Count="0" />
-    </LineIds>
-    <LineIds Name="FB_ReversingSequence.Execute">
-      <LineId Id="15" Count="7" />
-      <LineId Id="4" Count="0" />
-    </LineIds>
-    <LineIds Name="FB_ReversingSequence.IdleTime.Get">
-      <LineId Id="5" Count="0" />
-    </LineIds>
-    <LineIds Name="FB_ReversingSequence.IdleTime.Set">
-      <LineId Id="5" Count="0" />
-    </LineIds>
-    <LineIds Name="FB_ReversingSequence.Position1.Get">
-      <LineId Id="5" Count="0" />
-    </LineIds>
-    <LineIds Name="FB_ReversingSequence.Position1.Set">
-      <LineId Id="5" Count="0" />
-    </LineIds>
-    <LineIds Name="FB_ReversingSequence.Position2.Get">
-      <LineId Id="5" Count="0" />
-    </LineIds>
-    <LineIds Name="FB_ReversingSequence.Position2.Set">
-      <LineId Id="5" Count="0" />
-    </LineIds>
-    <LineIds Name="FB_ReversingSequence.Stop">
-      <LineId Id="22" Count="1" />
-      <LineId Id="15" Count="0" />
-    </LineIds>
-    <LineIds Name="FB_ReversingSequence.Velocity.Get">
-      <LineId Id="5" Count="0" />
-    </LineIds>
-    <LineIds Name="FB_ReversingSequence.Velocity.Set">
-      <LineId Id="5" Count="0" />
-    </LineIds>
   </POU>
 </TcPlcObject>
