@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.13">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
   <POU Name="OutfeedModule" Id="{217672e2-776d-43db-a4bd-00471447b980}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK OutfeedModule EXTENDS FB_PackML_BaseModule
 VAR
@@ -69,16 +69,5 @@ CASE DescendantSequenceState OF
 END_CASE]]></ST>
       </Implementation>
     </Method>
-    <LineIds Name="OutfeedModule">
-      <LineId Id="9" Count="0" />
-    </LineIds>
-    <LineIds Name="OutfeedModule.CyclicLogic">
-      <LineId Id="64" Count="11" />
-      <LineId Id="33" Count="0" />
-    </LineIds>
-    <LineIds Name="OutfeedModule.Initialize">
-      <LineId Id="270" Count="21" />
-      <LineId Id="11" Count="0" />
-    </LineIds>
   </POU>
 </TcPlcObject>

@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.13">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
   <POU Name="Machine" Id="{8fa7ef26-a4f9-420b-833f-0f9ff62a8657}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK Machine EXTENDS FB_PackML_BaseModule
 VAR
@@ -7,7 +7,7 @@ VAR
 	Infeed	: InfeedModule	:= (Name := 'Infeed');
 	Process : ProcessModule := (Name := 'Process');
 	Outfeed : OutfeedModule := (Name := 'Outfeed');
-	
+
 	//
 	_StopRequestFromEM : BOOL;
 END_VAR]]></Declaration>
@@ -36,6 +36,15 @@ END_IF
 
 //
 SUPER^.CyclicLogic();]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="HMIPermissions" Id="{fc795dac-120d-4b09-acbb-55428e892907}">
+      <Declaration><![CDATA[// Automatically enables and disables HMI control based on the PackML mode
+METHOD PROTECTED HMIPermissions
+
+// This method is called cyclically by CyclicLogic()]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[AllowHMIControl(ThisModuleOnly := TRUE);]]></ST>
       </Implementation>
     </Method>
     <Method Name="Initialize" Id="{15bd16c9-a6c8-4058-8296-b82bf853d82a}">
@@ -97,20 +106,5 @@ END_IF
 SUPER^.SubModuleMonitor();]]></ST>
       </Implementation>
     </Method>
-    <LineIds Name="Machine">
-      <LineId Id="9" Count="0" />
-    </LineIds>
-    <LineIds Name="Machine.CyclicLogic">
-      <LineId Id="100" Count="11" />
-      <LineId Id="86" Count="0" />
-    </LineIds>
-    <LineIds Name="Machine.Initialize">
-      <LineId Id="56" Count="24" />
-      <LineId Id="11" Count="0" />
-    </LineIds>
-    <LineIds Name="Machine.SubModuleMonitor">
-      <LineId Id="31" Count="5" />
-      <LineId Id="10" Count="0" />
-    </LineIds>
   </POU>
 </TcPlcObject>

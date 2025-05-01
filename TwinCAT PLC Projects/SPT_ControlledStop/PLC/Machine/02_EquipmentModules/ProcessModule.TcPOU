@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.13">
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
   <POU Name="ProcessModule" Id="{046809f4-f19d-40ee-b5ff-f58884637d42}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK ProcessModule EXTENDS FB_PackML_BaseModule
 VAR
@@ -18,8 +18,6 @@ END_VAR]]></Declaration>
 METHOD PUBLIC CyclicLogic
 VAR
 	i : UDINT;
-	
-	
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF NOT _InitComplete THEN
@@ -87,45 +85,21 @@ SUPER^.StopControlled();]]></ST>
       </Implementation>
     </Method>
     <Property Name="StopRequestToMM" Id="{b119b256-3a5b-4c14-9b53-3ecafb1197d7}">
-      <Declaration><![CDATA[PROPERTY StopRequestToMM : bool]]></Declaration>
+      <Declaration><![CDATA[PROPERTY StopRequestToMM : BOOL]]></Declaration>
       <Get Name="Get" Id="{3e241b11-3f39-4da4-9c06-08aafcfabf5f}">
         <Declaration><![CDATA[VAR
-END_VAR
-]]></Declaration>
+END_VAR]]></Declaration>
         <Implementation>
           <ST><![CDATA[StopRequestToMM := _StopRequestToMM;]]></ST>
         </Implementation>
       </Get>
       <Set Name="Set" Id="{e6550bd9-d18a-49ab-98c1-1e9d4338e0f2}">
-        <Declaration><![CDATA[
-VAR
-END_VAR
-]]></Declaration>
+        <Declaration><![CDATA[VAR
+END_VAR]]></Declaration>
         <Implementation>
           <ST><![CDATA[_StopRequestToMM := StopRequestToMM;]]></ST>
         </Implementation>
       </Set>
     </Property>
-    <LineIds Name="ProcessModule">
-      <LineId Id="9" Count="0" />
-    </LineIds>
-    <LineIds Name="ProcessModule.CyclicLogic">
-      <LineId Id="101" Count="4" />
-      <LineId Id="100" Count="0" />
-    </LineIds>
-    <LineIds Name="ProcessModule.Initialize">
-      <LineId Id="103" Count="22" />
-      <LineId Id="11" Count="0" />
-    </LineIds>
-    <LineIds Name="ProcessModule.StopControlled">
-      <LineId Id="63" Count="5" />
-      <LineId Id="60" Count="0" />
-    </LineIds>
-    <LineIds Name="ProcessModule.StopRequestToMM.Get">
-      <LineId Id="5" Count="0" />
-    </LineIds>
-    <LineIds Name="ProcessModule.StopRequestToMM.Set">
-      <LineId Id="2" Count="0" />
-    </LineIds>
   </POU>
 </TcPlcObject>

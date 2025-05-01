@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.13">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
   <POU Name="SampleComponent" Id="{39de7197-1fb6-432b-8c8b-27fa514d4256}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK SampleComponent EXTENDS FB_ComponentBase
 VAR
@@ -49,11 +49,7 @@ SUPER^.CyclicLogic();
 
 (* Update alarm severity from this component *)
 _CurrentAlarmSeverity := F_GetMaxSeverityRaised(Alarms := ComponentAlarms, CurrentSeverity := _CurrentAlarmSeverity);
-_Error				  := _CurrentAlarmSeverity >= TcEventSeverity.Error;
-
-
-
-]]></ST>
+_Error				  := _CurrentAlarmSeverity >= TcEventSeverity.Error;]]></ST>
       </Implementation>
     </Method>
     <Method Name="Initialize" Id="{11e869de-f8c6-4429-bc4c-971153785719}">
@@ -72,10 +68,9 @@ Initialize := SUPER^.Initialize();]]></ST>
     <Method Name="Monitoring" Id="{0e03a01f-f3e2-4203-b30d-02f6694e7235}">
       <Declaration><![CDATA[//! Provides basic error detection and event handling for this component
 METHOD PROTECTED Monitoring
-
 (*! @descriptionThis method is called cyclically by <c>CyclicLogic()</c>*)
 VAR
-	i: INT;
+	i : INT;
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF testError AND NOT ComponentAlarms[5].bRaised THEN
@@ -88,22 +83,23 @@ SUPER^.Monitoring();]]></ST>
     <Method Name="RaiseAlarm2Args" Id="{3b444795-a02f-4331-ab15-8dec5e002fb2}">
       <Declaration><![CDATA[METHOD RaiseAlarm2Args
 VAR_IN_OUT
-    Alarm : FB_TcAlarm; //Alarm to be raised
+	Alarm : FB_TcAlarm; //Alarm to be raised
 END_VAR
 
 VAR_INPUT
-    String_1 : STRING; //First String Parameter (The Name of this component will be applied first automatically)
-    String_2 : STRING; //Second String Parameter
+	String_1 : STRING; //First String Parameter (The Name of this component will be applied first automatically)
+	String_2 : STRING; //Second String Parameter
 END_VAR]]></Declaration>
       <Implementation>
-        <ST><![CDATA[F_RaiseAlarmWithStringParameters(Alarm    := Alarm,
-                                 String_1 := Name,
-                                 String_2 := String_1,
-                                 String_3 := String_2);]]></ST>
+        <ST><![CDATA[F_RaiseAlarmWithStringParameters(Alarm	  := Alarm,
+								 String_1 := Name,
+								 String_2 := String_1,
+								 String_3 := String_2);]]></ST>
       </Implementation>
     </Method>
     <Method Name="Reset" Id="{6737e5cc-5e58-4d89-aac0-5f2239d825cd}">
       <Declaration><![CDATA[//! @summary Clears error flags and error IDs for this component
+
 //Typically called by the EMs SUPER^.Clearing Method
 METHOD PUBLIC Reset : BOOL]]></Declaration>
       <Implementation>
@@ -115,35 +111,5 @@ IF SUPER^.Reset() THEN
 END_IF]]></ST>
       </Implementation>
     </Method>
-    <LineIds Name="SampleComponent">
-      <LineId Id="9" Count="0" />
-    </LineIds>
-    <LineIds Name="SampleComponent.CreateEvents">
-      <LineId Id="25" Count="4" />
-      <LineId Id="5" Count="0" />
-    </LineIds>
-    <LineIds Name="SampleComponent.CyclicLogic">
-      <LineId Id="14" Count="14" />
-      <LineId Id="5" Count="0" />
-      <LineId Id="30" Count="1" />
-      <LineId Id="29" Count="0" />
-      <LineId Id="32" Count="0" />
-    </LineIds>
-    <LineIds Name="SampleComponent.Initialize">
-      <LineId Id="15" Count="3" />
-      <LineId Id="6" Count="0" />
-    </LineIds>
-    <LineIds Name="SampleComponent.Monitoring">
-      <LineId Id="165" Count="3" />
-      <LineId Id="25" Count="0" />
-    </LineIds>
-    <LineIds Name="SampleComponent.RaiseAlarm2Args">
-      <LineId Id="36" Count="2" />
-      <LineId Id="16" Count="0" />
-    </LineIds>
-    <LineIds Name="SampleComponent.Reset">
-      <LineId Id="44" Count="4" />
-      <LineId Id="29" Count="0" />
-    </LineIds>
   </POU>
 </TcPlcObject>

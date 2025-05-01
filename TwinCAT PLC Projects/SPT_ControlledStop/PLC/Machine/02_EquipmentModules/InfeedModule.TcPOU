@@ -1,10 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.13">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
   <POU Name="InfeedModule" Id="{76aab0a3-2381-4d9d-a825-dafde1ec23bf}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK InfeedModule EXTENDS FB_PackML_BaseModule
 VAR
-END_VAR
-]]></Declaration>
+END_VAR]]></Declaration>
     <Implementation>
       <ST><![CDATA[]]></ST>
     </Implementation>
@@ -62,16 +61,5 @@ CASE DescendantSequenceState OF
 END_CASE]]></ST>
       </Implementation>
     </Method>
-    <LineIds Name="InfeedModule">
-      <LineId Id="9" Count="0" />
-    </LineIds>
-    <LineIds Name="InfeedModule.CyclicLogic">
-      <LineId Id="18" Count="4" />
-      <LineId Id="8" Count="0" />
-    </LineIds>
-    <LineIds Name="InfeedModule.Initialize">
-      <LineId Id="81" Count="21" />
-      <LineId Id="11" Count="0" />
-    </LineIds>
   </POU>
 </TcPlcObject>
