@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.13">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
   <POU Name="Component" Id="{f68683d6-7a3b-42b2-8aae-82389d3ee52f}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK Component EXTENDS FB_ComponentBase
 VAR
@@ -23,21 +23,17 @@ END_VAR]]></Declaration>
     <Method Name="ChangeEventSeverity" Id="{09629aa5-80d9-403d-9577-33b283b0b55a}">
       <Declaration><![CDATA[METHOD ChangeEventSeverity
 VAR_INPUT
-	AlarmID : E_ComponentEvents;
+	AlarmID	 : E_ComponentEvents;
 	Severity : TcEventSeverity;
 END_VAR
+
 VAR
 	localAlarm : TcEventEntry;
-END_VAR
-]]></Declaration>
+END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[localAlarm			 := TC_EVENTS.ComponentEvents.AnalogInAlarm;
 localAlarm.eSeverity := Severity;
-ComponentAlarms[AlarmID].CreateEx(localAlarm, 0, 0);
-
-
-
-]]></ST>
+ComponentAlarms[AlarmID].CreateEx(localAlarm, 0, 0);]]></ST>
       </Implementation>
     </Method>
     <Method Name="CreateEvents" Id="{b63661ac-39bc-48a5-a0dc-7e1dceb7a9cb}">
@@ -57,18 +53,14 @@ SUPER^.CreateEvents();]]></ST>
     <Method Name="CyclicLogic" Id="{57f3e089-87ec-40e9-8d89-c2565e148729}">
       <Declaration><![CDATA[//! @summary This method serves as the entry point for all underlying FB logic
 METHOD PUBLIC CyclicLogic
-
 //! @description This method should be called cyclically by descendant function blocks by invoking <c>SUPER^.CyclicLogic()</c>.  Alternatively, the contents of this method could be reimplemented entirely in which case a call to this method would not be necessary.
 VAR
-
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF NOT _InitComplete THEN
 	_InitComplete := Initialize();
 	RETURN;
 END_IF
-
-
 
 SUPER^.CyclicLogic();
 
@@ -95,10 +87,8 @@ METHOD PROTECTED Initialize : BOOL;
     <Method Name="Monitoring" Id="{7c9b6c42-8fe1-4877-98d5-b7e6e33b37fa}">
       <Declaration><![CDATA[//! Provides basic error detection and event handling for this component
 METHOD PROTECTED Monitoring
-
 (*! @descriptionThis method is called cyclically by <c>CyclicLogic()</c>*)
 VAR
-
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[_Busy := FALSE;
@@ -170,6 +160,7 @@ END_VAR]]></Declaration>
     </Method>
     <Method Name="Reset" Id="{6737e5cc-5e58-4d89-aac0-5f2239d825cd}">
       <Declaration><![CDATA[//! @summary Clears error flags and error IDs for this component
+
 //Typically called by the EMs SUPER^.Clearing Method
 METHOD PUBLIC Reset : BOOL]]></Declaration>
       <Implementation>
@@ -181,42 +172,5 @@ IF SUPER^.Reset() THEN
 END_IF]]></ST>
       </Implementation>
     </Method>
-    <LineIds Name="Component">
-      <LineId Id="9" Count="0" />
-    </LineIds>
-    <LineIds Name="Component.ChangeEventSeverity">
-      <LineId Id="17" Count="1" />
-      <LineId Id="16" Count="0" />
-      <LineId Id="20" Count="2" />
-      <LineId Id="19" Count="0" />
-    </LineIds>
-    <LineIds Name="Component.CreateEvents">
-      <LineId Id="25" Count="4" />
-      <LineId Id="5" Count="0" />
-    </LineIds>
-    <LineIds Name="Component.CyclicLogic">
-      <LineId Id="146" Count="3" />
-      <LineId Id="166" Count="0" />
-      <LineId Id="168" Count="0" />
-      <LineId Id="150" Count="4" />
-      <LineId Id="156" Count="1" />
-      <LineId Id="159" Count="3" />
-      <LineId Id="59" Count="0" />
-    </LineIds>
-    <LineIds Name="Component.Initialize">
-      <LineId Id="6" Count="0" />
-    </LineIds>
-    <LineIds Name="Component.Monitoring">
-      <LineId Id="361" Count="46" />
-      <LineId Id="68" Count="0" />
-    </LineIds>
-    <LineIds Name="Component.RaiseAlarm2Args">
-      <LineId Id="47" Count="2" />
-      <LineId Id="5" Count="0" />
-    </LineIds>
-    <LineIds Name="Component.Reset">
-      <LineId Id="53" Count="4" />
-      <LineId Id="51" Count="0" />
-    </LineIds>
   </POU>
 </TcPlcObject>

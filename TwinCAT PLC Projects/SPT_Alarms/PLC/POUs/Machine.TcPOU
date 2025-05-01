@@ -1,11 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.13">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
   <POU Name="Machine" Id="{66cc6e36-2ea9-4621-bedd-f5d531d191bf}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK Machine EXTENDS FB_PackML_BaseModule
 VAR
-	EquipOne	: EquipmentModule := (Name := 'Equip One');
+	EquipOne	: EquipmentModule			   := (Name := 'Equip One');
 	EquipTwo	: EquipmentModuleWithSubModule := (Name := 'Equip Two');
-	ComponentMM : Component		  := (Name := 'Component MM');
+	ComponentMM : Component					   := (Name := 'Component MM');
 
 	//Alarms
 	MachineAlarms : ARRAY[1..MACHINE_ALARM_COUNT] OF FB_TcAlarm;
@@ -150,10 +150,16 @@ SUPER^.CyclicLogic();
 (* Update alarm severity from this module *)
 _CurrentAlarmSeverity := F_GetMaxSeverityRaised(Alarms := MachineAlarms, CurrentSeverity := _CurrentAlarmSeverity);
 _Error				  := _CurrentAlarmSeverity >= TcEventSeverity.Error;
+Trace(Message := 'Test Mesage');]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="HMIPermissions" Id="{8e547c5b-7f21-4282-8bac-b6fb115570bc}">
+      <Declaration><![CDATA[// Automatically enables and disables HMI control based on the PackML mode
+METHOD PROTECTED HMIPermissions
 
-
-Trace(Message:='Test Mesage');
-]]></ST>
+// This method is called cyclically by CyclicLogic()]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[AllowHMIControl(ThisModuleOnly := TRUE);]]></ST>
       </Implementation>
     </Method>
     <Method Name="Initialize" Id="{d1725bba-8b00-4347-8fac-2b2ca6e24462}">
@@ -176,7 +182,7 @@ CASE DescendantSequenceState OF
 
 		//Register Submodules
 		RegisterSubmodule(EquipOne);
-		RegisterSubmodule(EquipTwo);		
+		RegisterSubmodule(EquipTwo);
 		RegisterComponent(ComponentMM);
 		DescendantSequenceState := DescendantSequenceState + 10;
 
@@ -256,37 +262,5 @@ END_VAR]]></Declaration>
 								 String_3 := String_2);]]></ST>
       </Implementation>
     </Method>
-    <LineIds Name="Machine">
-      <LineId Id="9" Count="0" />
-    </LineIds>
-    <LineIds Name="Machine.Clearing">
-      <LineId Id="1003" Count="63" />
-      <LineId Id="878" Count="0" />
-    </LineIds>
-    <LineIds Name="Machine.CreateEvents">
-      <LineId Id="31" Count="4" />
-      <LineId Id="5" Count="0" />
-    </LineIds>
-    <LineIds Name="Machine.CyclicLogic">
-      <LineId Id="275" Count="27" />
-      <LineId Id="152" Count="0" />
-      <LineId Id="310" Count="1" />
-      <LineId Id="309" Count="0" />
-      <LineId Id="312" Count="0" />
-    </LineIds>
-    <LineIds Name="Machine.Initialize">
-      <LineId Id="96" Count="6" />
-      <LineId Id="121" Count="1" />
-      <LineId Id="104" Count="6" />
-      <LineId Id="11" Count="0" />
-    </LineIds>
-    <LineIds Name="Machine.MachineMonitor">
-      <LineId Id="151" Count="41" />
-      <LineId Id="6" Count="0" />
-    </LineIds>
-    <LineIds Name="Machine.RaiseAlarm2Args">
-      <LineId Id="47" Count="2" />
-      <LineId Id="5" Count="0" />
-    </LineIds>
   </POU>
 </TcPlcObject>
