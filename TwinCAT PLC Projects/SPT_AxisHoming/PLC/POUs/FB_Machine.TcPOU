@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.13">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
   <POU Name="FB_Machine" Id="{f8df3025-e6cd-4a3e-a29b-8917de0b32ac}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK FB_Machine EXTENDS FB_PackML_BaseModule
 VAR
@@ -42,7 +42,6 @@ SUPER^.CyclicLogic();]]></ST>
     <Method Name="Execute" Id="{57e2d5d2-9c91-4388-941d-cf82dd454007}">
       <Declaration><![CDATA[//! @summary This method contains code which will execute when this PackML module is in the <b>Execute</b> state
 METHOD PROTECTED Execute
-
 (*! <description> <b>The base implementation of this method is empty. User must override this method to provide functionality.</b>
 <table> 
 	<tr>
@@ -63,8 +62,6 @@ This method is called as required by <c>StateControl()</c>
 
 *)
 VAR
-
-
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[CASE SequenceState OF
@@ -106,6 +103,23 @@ END_VAR]]></Declaration>
 	30:
 		AxisHomed := TRUE;
 END_CASE]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="hmip" Id="{e75c7597-d2aa-47da-93f3-7c33ab093918}">
+      <Declaration><![CDATA[METHOD hmip
+VAR_INPUT
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[AllowHMIControl(ThisModuleOnly := TRUE);]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="HMIPermissions" Id="{3903a1f5-9d44-4d86-8c3e-9c3977e99dc0}">
+      <Declaration><![CDATA[// Automatically enables and disables HMI control based on the PackML mode
+METHOD PROTECTED HMIPermissions
+
+// This method is called cyclically by CyclicLogic()]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[AllowHMIControl(ThisModuleOnly := TRUE);]]></ST>
       </Implementation>
     </Method>
     <Method Name="Initialize" Id="{db5d8948-38cd-4e0f-8416-5aad9f149e88}">
@@ -182,24 +196,5 @@ END_CASE
 SUPER^.Starting();]]></ST>
       </Implementation>
     </Method>
-    <LineIds Name="FB_Machine">
-      <LineId Id="9" Count="0" />
-    </LineIds>
-    <LineIds Name="FB_Machine.CyclicLogic">
-      <LineId Id="15" Count="4" />
-      <LineId Id="14" Count="0" />
-    </LineIds>
-    <LineIds Name="FB_Machine.Execute">
-      <LineId Id="284" Count="37" />
-      <LineId Id="241" Count="0" />
-    </LineIds>
-    <LineIds Name="FB_Machine.Initialize">
-      <LineId Id="40" Count="9" />
-      <LineId Id="12" Count="0" />
-    </LineIds>
-    <LineIds Name="FB_Machine.Starting">
-      <LineId Id="47" Count="18" />
-      <LineId Id="26" Count="0" />
-    </LineIds>
   </POU>
 </TcPlcObject>

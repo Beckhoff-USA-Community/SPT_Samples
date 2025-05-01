@@ -1,12 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.13">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
   <POU Name="MAIN" Id="{b87b5d7e-4c76-4024-9020-04c03382fac0}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM MAIN
 VAR
-	Machine			  : FB_Machine := (Name := 'Machine');
-	resetStateMachine : BOOL;
-	abort			  : BOOL;
-	stop			  : BOOL;
+	Machine : FB_Machine := (Name := 'Machine');
 END_VAR]]></Declaration>
     <Implementation>
       <ST><![CDATA[(*All sample code provided by Beckhoff Automation LLC are for illustrative purposes only and are provided “as is” and without any warranties, express or implied. Actual implementations in applications will vary significantly. Beckhoff Automation LLC shall have no liability for, and does not waive any rights in relation to, any code samples that it provides or the use of such code samples for any purpose.*)
@@ -29,48 +26,11 @@ END_VAR]]></Declaration>
 	
 *)
 
-
 //This is for debug only and should be removed
 _AppInfo.KeepOutputsOnBP := TRUE;
 
 //
-Machine.CyclicLogic();
-
-//
-CASE Machine.CurrentState OF
-	E_PMLState.ePMLState_Aborted:
-		IF resetStateMachine THEN
-			resetStateMachine := FALSE;
-			Machine.ChangeState(State := E_PMLCommand.ePMLCommand_Clear);
-		END_IF
-
-	E_PMLState.ePMLState_Stopped:
-		Machine.ChangeState(State := E_PMLCommand.ePMLCommand_Reset);
-
-	E_PMLState.ePMLState_Idle:
-		Machine.ChangeState(State := E_PMLCommand.ePMLCommand_Start);
-END_CASE
-
-//
-IF abort THEN
-	abort := FALSE;
-	Machine.ChangeState(State := E_PMLCommand.ePMLCommand_Abort);
-END_IF
-
-IF stop THEN
-	stop := FALSE;
-	Machine.ChangeState(State := ePMLCommand_Stop);
-END_IF]]></ST>
+Machine.CyclicLogic();]]></ST>
     </Implementation>
-    <LineIds Name="MAIN">
-      <LineId Id="89" Count="0" />
-      <LineId Id="93" Count="0" />
-      <LineId Id="92" Count="0" />
-      <LineId Id="96" Count="14" />
-      <LineId Id="94" Count="0" />
-      <LineId Id="90" Count="1" />
-      <LineId Id="53" Count="29" />
-      <LineId Id="10" Count="0" />
-    </LineIds>
   </POU>
 </TcPlcObject>
