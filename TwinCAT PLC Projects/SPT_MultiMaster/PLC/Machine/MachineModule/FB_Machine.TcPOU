@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.13">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
   <POU Name="FB_Machine" Id="{7ccbae2a-e009-4d31-97d8-45ba313d1efb}" SpecialFunc="None">
     <Declaration><![CDATA[{attribute 'no_explicit_call' := 'This FB is a CLASS and must be accessed using methods or properties'}
 FUNCTION_BLOCK FB_Machine EXTENDS FB_PackML_BaseModule
@@ -101,25 +101,5 @@ CASE DescendantSequenceState OF
 END_CASE]]></ST>
       </Implementation>
     </Method>
-    <LineIds Name="FB_Machine">
-      <LineId Id="65" Count="4" />
-      <LineId Id="18" Count="0" />
-    </LineIds>
-    <LineIds Name="FB_Machine.CyclicLogic">
-      <LineId Id="18" Count="4" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="FB_Machine.Execute">
-      <LineId Id="3" Count="13" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="FB_Machine.HMIPermissions">
-      <LineId Id="76" Count="8" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="FB_Machine.Initialize">
-      <LineId Id="376" Count="26" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
   </POU>
 </TcPlcObject>

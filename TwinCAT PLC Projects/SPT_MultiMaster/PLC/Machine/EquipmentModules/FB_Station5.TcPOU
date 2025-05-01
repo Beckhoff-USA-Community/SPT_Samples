@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.13">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
   <POU Name="FB_Station5" Id="{26b1d8bf-573e-4474-9908-1cb3f660443a}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK FB_Station5 EXTENDS FB_PackML_BaseModule
 VAR
@@ -395,50 +395,5 @@ CamParameters.CamTable[1].Points[3].SlavePos		  := 0.0;
 CamParameters.CamTable[1].NumberOfPoints			  := 3;]]></ST>
       </Implementation>
     </Method>
-    <LineIds Name="FB_Station5">
-      <LineId Id="36" Count="11" />
-      <LineId Id="78" Count="0" />
-      <LineId Id="48" Count="0" />
-      <LineId Id="92" Count="0" />
-      <LineId Id="49" Count="2" />
-      <LineId Id="79" Count="1" />
-      <LineId Id="102" Count="0" />
-      <LineId Id="52" Count="0" />
-      <LineId Id="103" Count="3" />
-      <LineId Id="55" Count="2" />
-      <LineId Id="59" Count="4" />
-      <LineId Id="21" Count="0" />
-    </LineIds>
-    <LineIds Name="FB_Station5.Aborting">
-      <LineId Id="969" Count="56" />
-      <LineId Id="358" Count="0" />
-    </LineIds>
-    <LineIds Name="FB_Station5.Completing">
-      <LineId Id="509" Count="28" />
-      <LineId Id="25" Count="0" />
-    </LineIds>
-    <LineIds Name="FB_Station5.CyclicLogic">
-      <LineId Id="256" Count="14" />
-      <LineId Id="8" Count="0" />
-    </LineIds>
-    <LineIds Name="FB_Station5.Initialize">
-      <LineId Id="545" Count="26" />
-      <LineId Id="11" Count="0" />
-    </LineIds>
-    <LineIds Name="FB_Station5.MasterAxisRef.Set">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="FB_Station5.Starting">
-      <LineId Id="2560" Count="112" />
-      <LineId Id="137" Count="0" />
-    </LineIds>
-    <LineIds Name="FB_Station5.Stopping">
-      <LineId Id="344" Count="28" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="FB_Station5.WriteCamParameters">
-      <LineId Id="101" Count="21" />
-      <LineId Id="5" Count="0" />
-    </LineIds>
   </POU>
 </TcPlcObject>

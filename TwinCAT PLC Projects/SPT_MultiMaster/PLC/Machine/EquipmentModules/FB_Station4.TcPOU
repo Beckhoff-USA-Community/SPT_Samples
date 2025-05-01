@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.13">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
   <POU Name="FB_Station4" Id="{385868b0-e0df-4481-b79c-b9d6f1ed6542}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK FB_Station4 EXTENDS FB_PackML_BaseModule
 VAR
@@ -271,42 +271,5 @@ END_CASE
 SUPER^.Stopping();]]></ST>
       </Implementation>
     </Method>
-    <LineIds Name="FB_Station4">
-      <LineId Id="62" Count="7" />
-      <LineId Id="85" Count="0" />
-      <LineId Id="83" Count="0" />
-      <LineId Id="88" Count="0" />
-      <LineId Id="87" Count="0" />
-      <LineId Id="70" Count="1" />
-      <LineId Id="74" Count="1" />
-      <LineId Id="9" Count="0" />
-    </LineIds>
-    <LineIds Name="FB_Station4.Aborting">
-      <LineId Id="712" Count="41" />
-      <LineId Id="358" Count="0" />
-    </LineIds>
-    <LineIds Name="FB_Station4.Completing">
-      <LineId Id="469" Count="23" />
-      <LineId Id="25" Count="0" />
-    </LineIds>
-    <LineIds Name="FB_Station4.CyclicLogic">
-      <LineId Id="288" Count="14" />
-      <LineId Id="8" Count="0" />
-    </LineIds>
-    <LineIds Name="FB_Station4.Initialize">
-      <LineId Id="428" Count="16" />
-      <LineId Id="11" Count="0" />
-    </LineIds>
-    <LineIds Name="FB_Station4.MasterAxisRef.Set">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="FB_Station4.Starting">
-      <LineId Id="1461" Count="72" />
-      <LineId Id="137" Count="0" />
-    </LineIds>
-    <LineIds Name="FB_Station4.Stopping">
-      <LineId Id="340" Count="23" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
   </POU>
 </TcPlcObject>

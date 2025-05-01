@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.13">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
   <POU Name="FB_Station3" Id="{6750d947-a453-404d-903c-2263c894ef74}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK FB_Station3 EXTENDS FB_PackML_BaseModule
 VAR
@@ -332,44 +332,5 @@ CamParameters.CamTable[1].Points[3].SlavePos		  := 0.0;
 CamParameters.CamTable[1].NumberOfPoints			  := 3;]]></ST>
       </Implementation>
     </Method>
-    <LineIds Name="FB_Station3">
-      <LineId Id="73" Count="17" />
-      <LineId Id="111" Count="0" />
-      <LineId Id="109" Count="1" />
-      <LineId Id="92" Count="3" />
-      <LineId Id="97" Count="4" />
-      <LineId Id="18" Count="0" />
-    </LineIds>
-    <LineIds Name="FB_Station3.Aborting">
-      <LineId Id="759" Count="43" />
-      <LineId Id="358" Count="0" />
-    </LineIds>
-    <LineIds Name="FB_Station3.Completing">
-      <LineId Id="441" Count="23" />
-      <LineId Id="25" Count="0" />
-    </LineIds>
-    <LineIds Name="FB_Station3.CyclicLogic">
-      <LineId Id="224" Count="5" />
-      <LineId Id="8" Count="0" />
-    </LineIds>
-    <LineIds Name="FB_Station3.Initialize">
-      <LineId Id="788" Count="24" />
-      <LineId Id="11" Count="0" />
-    </LineIds>
-    <LineIds Name="FB_Station3.MasterAxisRef.Set">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="FB_Station3.Starting">
-      <LineId Id="3146" Count="90" />
-      <LineId Id="137" Count="0" />
-    </LineIds>
-    <LineIds Name="FB_Station3.Stopping">
-      <LineId Id="409" Count="23" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="FB_Station3.WriteCamParameters">
-      <LineId Id="101" Count="21" />
-      <LineId Id="5" Count="0" />
-    </LineIds>
   </POU>
 </TcPlcObject>

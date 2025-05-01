@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.13">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
   <POU Name="FB_Station2" Id="{a6415801-434d-4b0d-8167-f5e0dc757c3d}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK FB_Station2 EXTENDS FB_PackML_BaseModule
 VAR
@@ -42,7 +42,7 @@ CASE SequenceState OF
 
 		//Setting Override to 100 will ensure velocity calculations are not limited
 		VariableAxis.Override := 100;
-		if VariableAxis.Stop() then //This will also GearOut
+		IF VariableAxis.Stop() THEN //This will also GearOut
 			SequenceState := SequenceState + 10;
 		END_IF
 
@@ -233,36 +233,5 @@ END_CASE
 SUPER^.Stopping();]]></ST>
       </Implementation>
     </Method>
-    <LineIds Name="FB_Station2">
-      <LineId Id="43" Count="14" />
-      <LineId Id="9" Count="0" />
-    </LineIds>
-    <LineIds Name="FB_Station2.Aborting">
-      <LineId Id="571" Count="32" />
-      <LineId Id="380" Count="0" />
-    </LineIds>
-    <LineIds Name="FB_Station2.Completing">
-      <LineId Id="404" Count="21" />
-      <LineId Id="25" Count="0" />
-    </LineIds>
-    <LineIds Name="FB_Station2.CyclicLogic">
-      <LineId Id="274" Count="14" />
-      <LineId Id="8" Count="0" />
-    </LineIds>
-    <LineIds Name="FB_Station2.Initialize">
-      <LineId Id="249" Count="14" />
-      <LineId Id="11" Count="0" />
-    </LineIds>
-    <LineIds Name="FB_Station2.MasterAxisRef.Set">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="FB_Station2.Starting">
-      <LineId Id="1186" Count="51" />
-      <LineId Id="137" Count="0" />
-    </LineIds>
-    <LineIds Name="FB_Station2.Stopping">
-      <LineId Id="260" Count="21" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
   </POU>
 </TcPlcObject>

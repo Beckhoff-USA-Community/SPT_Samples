@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.13">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
   <POU Name="FB_MainDrive" Id="{26d642ce-310a-47dd-8933-8cfb4c97a9f3}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK FB_MainDrive EXTENDS FB_PackML_BaseModule
 VAR
@@ -109,7 +109,6 @@ SUPER^.CyclicLogic();]]></ST>
     <Method Name="Execute" Id="{1ac45e52-aa32-4c3f-a0e7-4a776062064b}" FolderPath="Acting States\">
       <Declaration><![CDATA[METHOD PROTECTED Execute
 VAR
-
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[CASE _CurrentMode OF
@@ -169,11 +168,10 @@ END_CASE]]></ST>
       </Implementation>
     </Method>
     <Property Name="StartCommand" Id="{e728752b-e06b-4fa7-8565-d00aeba51719}" FolderPath="Properties\">
-      <Declaration><![CDATA[PROPERTY StartCommand : bool]]></Declaration>
+      <Declaration><![CDATA[PROPERTY StartCommand : BOOL]]></Declaration>
       <Set Name="Set" Id="{b6cf63c7-9a8e-4160-8bc1-1e62c074760d}">
         <Declaration><![CDATA[VAR
-END_VAR
-]]></Declaration>
+END_VAR]]></Declaration>
         <Implementation>
           <ST><![CDATA[_StartCommand := StartCommand;]]></ST>
         </Implementation>
@@ -247,43 +245,5 @@ END_CASE
 SUPER^.Stopping();]]></ST>
       </Implementation>
     </Method>
-    <LineIds Name="FB_MainDrive">
-      <LineId Id="42" Count="8" />
-      <LineId Id="14" Count="0" />
-    </LineIds>
-    <LineIds Name="FB_MainDrive.Aborting">
-      <LineId Id="458" Count="30" />
-      <LineId Id="334" Count="0" />
-    </LineIds>
-    <LineIds Name="FB_MainDrive.AxisRef.Get">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="FB_MainDrive.Completing">
-      <LineId Id="232" Count="21" />
-      <LineId Id="25" Count="0" />
-    </LineIds>
-    <LineIds Name="FB_MainDrive.CyclicLogic">
-      <LineId Id="13" Count="4" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="FB_MainDrive.Execute">
-      <LineId Id="521" Count="32" />
-      <LineId Id="28" Count="0" />
-    </LineIds>
-    <LineIds Name="FB_MainDrive.Initialize">
-      <LineId Id="184" Count="13" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="FB_MainDrive.StartCommand.Set">
-      <LineId Id="5" Count="0" />
-    </LineIds>
-    <LineIds Name="FB_MainDrive.Starting">
-      <LineId Id="436" Count="33" />
-      <LineId Id="137" Count="0" />
-    </LineIds>
-    <LineIds Name="FB_MainDrive.Stopping">
-      <LineId Id="224" Count="21" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
   </POU>
 </TcPlcObject>
