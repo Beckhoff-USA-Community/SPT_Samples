@@ -132,7 +132,7 @@ END_VAR]]></Declaration>
 
 			30: // Raise Velocity
 
-				//ExtSetpointGen.Velocity := VelocityAxis.ActualVelocity + ((100.0 - VelocityAxis.ActualVelocity) * 0.01);
+				//ExtSetpointGen.Velocity := VelocityAxis.ActualVelocity + ((100.0 - VelocityAxis.ActualVelocity) * 0.01); // Without encoder feedback the Actual Velocity will stay at 0
 				ExtSetpointGen.Velocity := ExtSetpointGen.Velocity + 0.01;
 				IF Stop THEN
 					Stop		  := FALSE;
@@ -141,7 +141,7 @@ END_VAR]]></Declaration>
 
 			40: // Reduce Velocity to 0
 
-				//ExtSetpointGen.Velocity := VelocityAxis.ActualVelocity - ((0.0 - VelocityAxis.ActualVelocity) * 0.01);
+				//ExtSetpointGen.Velocity := VelocityAxis.ActualVelocity - ((0.0 - VelocityAxis.ActualVelocity) * 0.01); // Without encoder feedback the Actual Velocity will stay at 0
 				ExtSetpointGen.Velocity := ExtSetpointGen.Velocity - 0.01;
 				IF (ExtSetpointGen.Velocity <= 1.0) AND (VelocityAxis.ActualVelocity = 0) THEN
 					SequenceState := 50;
