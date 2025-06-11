@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="MAIN" Id="{5a3f0481-7d61-4f7a-8510-b4e7ac1ed273}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM MAIN
+VAR
+	Machine : Machine := (Name := 'Machine');
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[_AppInfo.KeepOutputsOnBP := TRUE;
+Machine.CyclicLogic();
+
+// External Setpoint Generator 
+BasicESPG_Position();
+BasicESPG_Velocity();]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

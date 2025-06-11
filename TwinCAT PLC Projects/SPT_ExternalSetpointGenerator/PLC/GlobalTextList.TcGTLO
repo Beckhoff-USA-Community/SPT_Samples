@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <GlobalTextList Name="GlobalTextList" Id="{f6b95569-e1b7-47aa-82af-c64119bb6e35}">
+    <XmlArchive>
+      <Data>
+        <o xml:space="preserve" t="GlobalTextListObject">
+          <l n="TextList" t="ArrayList" cet="TextListRow">
+            <o>
+              <v n="TextID">"155"</v>
+              <v n="TextDefault">"&lt;"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"625"</v>
+              <v n="TextDefault">"&lt;&lt;"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"160"</v>
+              <v n="TextDefault">"&gt;"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"854"</v>
+              <v n="TextDefault">"&gt;&gt;"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"636"</v>
+              <v n="TextDefault">"Enable SPG"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"612"</v>
+              <v n="TextDefault">"ExtSetPos: %2.5f"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"338"</v>
+              <v n="TextDefault">"ExtSetPos: %5.2f"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"808"</v>
+              <v n="TextDefault">"ExtSetPos: %f"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"435"</v>
+              <v n="TextDefault">"ExtSetVelo: %f"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"81"</v>
+              <v n="TextDefault">"Set Position Value: %5.2f"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"13"</v>
+              <v n="TextDefault">"Set Position Value: %f"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"748"</v>
+              <v n="TextDefault">"Set Velocity Value: %5.2f"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+          </l>
+          <l n="Languages" t="ArrayList" />
+          <v n="GuidInit">{9ecff397-d3be-4c1f-a834-a73e9331b129}</v>
+          <v n="GuidReInit">{3cdc4110-497c-475c-9ac1-a86fc78a316c}</v>
+          <v n="GuidExitX">{4f3b8b20-17fd-439a-871d-b2b811b26333}</v>
+        </o>
+      </Data>
+      <TypeList>
+        <Type n="ArrayList">System.Collections.ArrayList</Type>
+        <Type n="GlobalTextListObject">{63784cbb-9ba0-45e6-9d69-babf3f040511}</Type>
+        <Type n="Guid">System.Guid</Type>
+        <Type n="String">System.String</Type>
+        <Type n="TextListRow">{53da1be7-ad25-47c3-b0e8-e26286dad2e0}</Type>
+      </TypeList>
+    </XmlArchive>
+  </GlobalTextList>
+</TcPlcObject>

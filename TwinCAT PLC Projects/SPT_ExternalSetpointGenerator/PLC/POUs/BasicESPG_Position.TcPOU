@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="BasicESPG_Position" Id="{3c5e79e5-0570-4489-b553-a70e94bc856b}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM BasicESPG_Position
+VAR
+	Basic_Axis : AXIS_REF;
+	Power	   : MC_Power;
+	EnableSPG  : MC_ExtSetPointGenEnable;
+	DisableSPG : MC_ExtSetPointGenDisable;
+
+	//
+	Execute					: BOOL;
+	Destination				: LREAL;
+	NextIncrementalPosition : LREAL;
+	
+	Inc1: BOOL;
+	Inc10: BOOL;
+	Dec1: BOOL;
+	Dec10: BOOL;
+	HasJob: BOOL;
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[// The Axis is always enabled for demo purposes
+Power(Axis			  := Basic_Axis,
+	  Enable		  := TRUE,
+	  Enable_Positive := TRUE,
+	  Enable_Negative := TRUE);
+
+(*
+	Enable the External Setpoint Generator and set the Destination
+	The Destination value is loaded when the ESPG is ENabled
+	This value will be used to determine the 'In Target Pos' and 'In Pos Range' flags
+*)
+EnableSPG(Axis := Basic_Axis, Execute := Execute, Position := Destination);
+
+// Disable the External Setpoint Generator when not enabled
+DisableSPG(Axis := Basic_Axis, Execute := NOT Execute);
+
+(*
+	Once enabled above, the Position value can be modified to send commands to the axis through the Axis.PlcToNc.ExtSetPos
+	Velocity is not required as the MC_ExtSetPointGenFeed is sending position commands to the axis 
+	- Actualy velocity for a real axis will be based on encoder feedback
+	- For a simulation axis, actual velocity will be calculated based on the change in position and the task time
+	An Acceleration value is not required for Position commands
+	If the Direction is 0 the axis will not move, set the value to 1 for movemnt. The actual direction will be determined by the change in Position
+*)
+
+// When the Axis Status 'Has Job' is true, no other commands can be sent to the Axis. While the ESPG is Enabled, the 'Has Job' will be TRUE 
+HasJob := Basic_Axis.NcToPlc.StateDWord.8;
+
+//
+IF EnableSPG.Enabled THEN // Not required, but prevents the NextIncrementalPosition value from being sent to Axis.PlcToNc.ExtSetPos
+	MC_ExtSetPointGenFeed(Axis		   := Basic_Axis,
+						  Position	   := NextIncrementalPosition,
+						  Velocity	   := 0,
+						  Acceleration := 0,
+						  Direction	   := 1);
+END_IF
+
+(*	WARNING !!!!!!!!
+	Changing the Position while the ESPG is not Enabled will change the value of the Axis.PlcToNc.ExtSetPos, but will not cause Axis movement.
+	Enabling the ESPG with a Position value that is different than the current Actual Value will cause the axis to jump and likely fault.
+*)
+
+// Commands from Visu
+IF Inc1 THEN
+	Inc1					:= FALSE;
+	NextIncrementalPosition := NextIncrementalPosition + 1;
+END_IF
+
+IF Inc10 THEN
+	Inc10					:= FALSE;
+	NextIncrementalPosition := NextIncrementalPosition + 10;
+END_IF
+
+IF Dec1 THEN
+	Dec1					:= FALSE;
+	NextIncrementalPosition := NextIncrementalPosition - 1;
+END_IF
+
+IF Dec10 THEN
+	Dec10					:= FALSE;
+	NextIncrementalPosition := NextIncrementalPosition - 10;
+END_IF]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

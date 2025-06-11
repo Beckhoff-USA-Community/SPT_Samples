@@ -1,0 +1,230 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="FB_ExternalSetpointGenerator" Id="{6d415f76-4c13-400e-ac71-fda00daea3bc}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_ExternalSetpointGenerator EXTENDS FB_CyclicFB IMPLEMENTS I_MotionSequence
+VAR
+	//Properties
+	_Axis		 : I_BasicAxis;
+	_Position	 : LREAL;
+	_Destination : LREAL := 0.0;
+	_Velocity	 : LREAL := 0.0;
+	_Accel		 : LREAL := 0.0;
+	_Direction	 : DINT	 := 1;
+
+	// FBs
+	EnableExtSP	 : MC_ExtSetPointGenEnable;
+	DisableExtSP : MC_ExtSetPointGenDisable;
+
+	//Internal Vars
+	SequenceStep : INT;
+	Options		 : ST_ExtSetPointEnableOptions;
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Folder Name="I_MotionSequence" Id="{88ab4e90-5b49-4777-b668-e9110d0f28f5}" />
+    <Property Name="Accel" Id="{c1d39157-df10-4d5b-99f2-0647845c4777}">
+      <Declaration><![CDATA[PROPERTY Accel : lreal]]></Declaration>
+      <Get Name="Get" Id="{2812a2f2-f8cb-4869-bdf8-6381f52972d3}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[Accel := _Accel;]]></ST>
+        </Implementation>
+      </Get>
+      <Set Name="Set" Id="{a71a8d73-7f85-46d4-bb48-1a4732d0ff7f}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[_Accel := Accel;]]></ST>
+        </Implementation>
+      </Set>
+    </Property>
+    <Property Name="Axis" Id="{df0cdfd4-b340-4243-b88b-c9c737c57a97}" FolderPath="I_MotionSequence\">
+      <Declaration><![CDATA[{warning 'add property implementation'}
+PROPERTY Axis : SPT_Motion_Control.I_BasicAxis
+]]></Declaration>
+      <Get Name="Get" Id="{bb97296c-681a-4900-83dd-d1b1a22e44d6}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[Axis := _Axis;]]></ST>
+        </Implementation>
+      </Get>
+      <Set Name="Set" Id="{4a8165df-485e-48fb-8ca3-b2cdb3bae184}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[_Axis := Axis;]]></ST>
+        </Implementation>
+      </Set>
+    </Property>
+    <Method Name="CyclicLogic" Id="{0560b196-b0e1-457f-ac76-fd85944e2838}">
+      <Declaration><![CDATA[{warning 'add method implementation '}
+METHOD CyclicLogic
+
+VAR
+	_Pos		 : LREAL;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[CASE SequenceStep OF
+	E_ExternalSPGen.Wait:
+		EnableExtSP(Axis := _Axis.Axis, Execute := FALSE, Position := _Axis.ActualPosition);
+		DisableExtSP(Axis := _Axis.Axis, Execute := FALSE);
+
+	E_ExternalSPGen.EnableCmd:
+		EnableExtSP(Axis		 := _Axis.Axis,
+					Execute		 := TRUE,
+					Position	 := _Destination, // Used for Position Monitoring
+					PositionType := E_PositionType.POSITIONTYPE_ABSOLUTE,
+					Options		 := Options);
+
+		IF EnableExtSP.Enabled THEN
+			SequenceStep := E_ExternalSPGen.Feeding;
+		END_IF
+
+	E_ExternalSPGen.Feeding:
+		MC_ExtSetPointGenFeed(Axis		   := _Axis.Axis,
+							  Position	   := _Position,
+							  Velocity	   := _Velocity,
+							  Acceleration := _Accel,
+							  Direction	   := _Direction);
+
+	E_ExternalSPGen.DisableCmd:
+		DisableExtSP(Axis := _Axis.Axis, Execute := TRUE);
+		SequenceStep := E_ExternalSPGen.Disabling;
+
+	E_ExternalSPGen.Disabling:
+		DisableExtSP(Axis := _Axis.Axis, Execute := FALSE);
+		IF NOT DisableExtSP.Busy AND NOT DisableExtSP.Enabled THEN
+			IF NOT DisableExtSP.Error THEN
+				SequenceStep := E_ExternalSPGen.Wait;
+			ELSE
+				_ErrorID	 := DisableExtSP.ErrorID;
+				SequenceStep := E_ExternalSPGen.Error;
+			END_IF
+		END_IF
+
+	E_ExternalSPGen.Error:
+		_Error := TRUE;
+END_CASE
+
+_Busy := SequenceStep <> 0;]]></ST>
+      </Implementation>
+    </Method>
+    <Property Name="Destination" Id="{c7f40788-c6fa-4d1c-8ab7-1cd2f34c5c03}">
+      <Declaration><![CDATA[PROPERTY Destination : lreal]]></Declaration>
+      <Get Name="Get" Id="{87df1300-aa4e-4d3a-8cce-3014554b9c91}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[Destination := _Destination;]]></ST>
+        </Implementation>
+      </Get>
+      <Set Name="Set" Id="{4d9e3b66-71e2-48e0-82d7-00350f1fd33e}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[_Destination := Destination;]]></ST>
+        </Implementation>
+      </Set>
+    </Property>
+    <Property Name="Direction" Id="{d43b92da-f12d-4943-baab-ff67c6fb1183}">
+      <Declaration><![CDATA[PROPERTY Direction : DINT // -1 = negative direction, 0 = standstill, 1 = positive direction]]></Declaration>
+      <Get Name="Get" Id="{499988f3-8934-4b83-8fb0-db3c1291791a}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[Direction := _Direction;]]></ST>
+        </Implementation>
+      </Get>
+      <Set Name="Set" Id="{c8603acc-8fd5-4960-8037-ce2503980443}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[_Direction := Direction;]]></ST>
+        </Implementation>
+      </Set>
+    </Property>
+    <Method Name="Disable" Id="{b2c22a57-475f-4789-b3a0-b0e9911e4299}">
+      <Declaration><![CDATA[METHOD Disable : bool
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF (_Axis = 0) THEN
+	RETURN;
+END_IF
+
+_Busy		 := TRUE;
+_Error		 := FALSE;
+_ErrorID	 := 0;
+SequenceStep := E_ExternalSPGen.DisableCmd;
+Disable		 := TRUE;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="Execute" Id="{a70490cf-eb31-4092-a917-050b2ab925a4}" FolderPath="I_MotionSequence\">
+      <Declaration><![CDATA[{warning 'add method implementation '}
+METHOD Execute : BOOL
+
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF (_Axis = 0) OR _Busy THEN
+	RETURN;
+END_IF
+
+_Busy		 := TRUE;
+_Error		 := FALSE;
+_ErrorID	 := 0;
+SequenceStep := E_ExternalSPGen.EnableCmd;
+Execute		 := TRUE;]]></ST>
+      </Implementation>
+    </Method>
+    <Property Name="Position" Id="{016d70d2-09e8-4b5a-a6c7-01b904e07489}">
+      <Declaration><![CDATA[PROPERTY Position : lreal]]></Declaration>
+      <Get Name="Get" Id="{fa0c7b30-9aa5-450c-8fcf-be815e2a9a71}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[Position := _Position;]]></ST>
+        </Implementation>
+      </Get>
+      <Set Name="Set" Id="{a5628128-28ea-4bb1-9c7a-e01f884d5063}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[_Position := Position;]]></ST>
+        </Implementation>
+      </Set>
+    </Property>
+    <Property Name="Velocity" Id="{62810b9f-7d40-4d06-9bb2-4ebcb58ca10c}">
+      <Declaration><![CDATA[PROPERTY Velocity : lreal]]></Declaration>
+      <Get Name="Get" Id="{66980c39-d914-4e30-a969-424ba66c4a77}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[Velocity := _Velocity;]]></ST>
+        </Implementation>
+      </Get>
+      <Set Name="Set" Id="{2a026a4f-1d86-4abf-bc0e-b44830568e8b}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[_Velocity := Velocity;]]></ST>
+        </Implementation>
+      </Set>
+    </Property>
+  </POU>
+</TcPlcObject>

@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <DUT Name="E_ExternalSPGen" Id="{d41ecca7-d0e2-48da-999c-1d9ed4d90e4b}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+{attribute 'strict'}
+TYPE E_ExternalSPGen : (
+		Wait := 0,
+		EnableCmd,
+		Enabling,
+		Feeding,
+		DisableCmd,
+		Disabling,
+		Error
+	);
+END_TYPE]]></Declaration>
+  </DUT>
+</TcPlcObject>
