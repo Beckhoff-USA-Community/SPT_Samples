@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <Itf Name="I_ExternalSetpointGenerator" Id="{10719eaf-4099-426b-8003-cea9c512c0e0}">
+    <Declaration><![CDATA[INTERFACE I_ExternalSetpointGenerator
+]]></Declaration>
+    <Property Name="Accel" Id="{79f6f676-70af-4596-9897-db8a11613d7d}">
+      <Declaration><![CDATA[PROPERTY Accel : lreal]]></Declaration>
+      <Get Name="Get" Id="{ed255492-fa95-4783-8632-59e30b1ed7e9}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Get>
+      <Set Name="Set" Id="{75b5a338-7bd7-4382-9402-61b24f3ef92f}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Set>
+    </Property>
+    <Property Name="Destination" Id="{3d2adf39-08ba-4693-8616-b57013a05a27}">
+      <Declaration><![CDATA[PROPERTY Destination : lreal]]></Declaration>
+      <Get Name="Get" Id="{6872398b-d1e7-47ed-a2ba-025aaddd4fd1}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Get>
+      <Set Name="Set" Id="{c2b07bc0-ae87-489c-8056-9abb690c80cb}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Set>
+    </Property>
+    <Property Name="Direction" Id="{89b0185b-c9f8-418a-994c-a3240f9af74f}">
+      <Declaration><![CDATA[PROPERTY Direction : DINT // -1 = negative direction, 0 = standstill, 1 = positive direction]]></Declaration>
+      <Get Name="Get" Id="{2e43e6f2-3818-436c-8162-bdcf518ebae1}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Get>
+      <Set Name="Set" Id="{a812e693-b878-4550-8398-0efed78d7a26}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Set>
+    </Property>
+    <Method Name="Disable" Id="{5cf1c988-2f0e-43b7-b149-46972e2ef7e2}">
+      <Declaration><![CDATA[METHOD Disable : bool
+VAR_INPUT
+END_VAR
+]]></Declaration>
+    </Method>
+    <Property Name="Position" Id="{f48b70c7-1f7a-43e4-8f45-f9d4c09a808f}">
+      <Declaration><![CDATA[PROPERTY Position : lreal]]></Declaration>
+      <Get Name="Get" Id="{f57346dc-0359-4102-a7c6-5d549b8385bd}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Get>
+      <Set Name="Set" Id="{06950769-a1a4-4b3c-bcf3-a27598917d7e}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Set>
+    </Property>
+    <Property Name="Velocity" Id="{ce459b92-8c3f-4f13-a628-f72a7a9bd533}">
+      <Declaration><![CDATA[PROPERTY Velocity : lreal]]></Declaration>
+      <Get Name="Get" Id="{dc389fe1-28a7-4eb2-8320-0ca0772c5d59}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Get>
+      <Set Name="Set" Id="{3a1df2a7-01dc-407d-b539-339308d57e7c}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Set>
+    </Property>
+  </Itf>
+</TcPlcObject>

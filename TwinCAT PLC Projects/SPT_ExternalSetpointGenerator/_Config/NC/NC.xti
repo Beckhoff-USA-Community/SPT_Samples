@@ -13,7 +13,7 @@
 				<Name>Image</Name>
 			</Image>
 		</SafTask>
-		<SvbTask Priority="8" CycleTime="20000" AmsPort="511">
+		<SvbTask Priority="8" CycleTime="100000" AmsPort="511">
 			<Name>NC-Task 1 SVB</Name>
 		</SvbTask>
 		<Axis File="Axis Position.xti" Id="1"/>

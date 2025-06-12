@@ -17,10 +17,16 @@
     <LibraryReferences>{4b543be9-a841-4855-897a-df438e1ba283}</LibraryReferences>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Function Blocks\E_ExternalSPGen.TcDUT">
+    <Compile Include="FastTask.TcTTO">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Function Blocks\FB_ExternalSetpointGenerator.TcPOU">
+    <Compile Include="Function Blocks\ExternalSetpointGenerator\E_ExternalSPGen.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Function Blocks\ExternalSetpointGenerator\FB_ExternalSetpointGenerator.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Function Blocks\ExternalSetpointGenerator\I_ExternalSetpointGenerator.TcIO">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="GlobalTextList.TcGTLO">
@@ -38,10 +44,13 @@
     <Compile Include="PlcTask.TcTTO">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="POUs\BasicESPG_Position.TcPOU">
+    <Compile Include="POUs Fast Task\BasicESPG_Position.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="POUs\BasicESPG_Velocity.TcPOU">
+    <Compile Include="POUs Fast Task\BasicESPG_Velocity.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs Fast Task\Fast_Task.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\MAIN.TcPOU">
@@ -61,12 +70,14 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="DUTs" />
+    <Folder Include="Function Blocks\ExternalSetpointGenerator" />
     <Folder Include="GVLs" />
     <Folder Include="Modules" />
     <Folder Include="Modules\00 Machine" />
     <Folder Include="Function Blocks" />
     <Folder Include="Modules\01 Infeed Position" />
     <Folder Include="Modules\02 Outfeed Velocity" />
+    <Folder Include="POUs Fast Task" />
     <Folder Include="VISUs" />
     <Folder Include="POUs" />
   </ItemGroup>

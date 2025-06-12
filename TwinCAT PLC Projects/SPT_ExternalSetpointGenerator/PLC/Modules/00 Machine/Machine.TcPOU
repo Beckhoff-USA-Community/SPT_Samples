@@ -22,10 +22,6 @@ METHOD PROTECTED HMIPermissions
       <Declaration><![CDATA[// Basic module initialization logic
 METHOD PROTECTED Initialize : BOOL;
 VAR
-	i						 : UDINT;
-	varInfo					 : __SYSTEM.VAR_INFO;
-	AllSubUnitsInitialized	 : BOOL := TRUE;
-	AllComponentsInitialized : BOOL := TRUE;
 END_VAR
 
 // This method is called by CyclicLogic() as required]]></Declaration>

@@ -8,25 +8,26 @@ END_VAR]]></Declaration>
     <Implementation>
       <ST><![CDATA[(*All sample code provided by Beckhoff Automation LLC are for illustrative purposes only and are provided “as is” and without any warranties, express or implied. Actual implementations in applications will vary significantly. Beckhoff Automation LLC shall have no liability for, and does not waive any rights in relation to, any code samples that it provides or the use of such code samples for any purpose.*)
 
-// NOTE: This code has note been tested on Hardware
+// NOTE: This code has not been tested on Hardware
 
 // This is for debug only and should be removed
 _AppInfo.KeepOutputsOnBP := TRUE;
 
 (*
-	There are 2 Equipment modules that each contain 1 axis
-	The Infeed EM contains an axis that implements Position control
-	The Outfeed EM contains an axis that implements Velocity control
+	There are 2 Equipment modules that use 1 axis each
+	The Infeed EM controls an axis that implements Position control
+	The Outfeed EM controls an axis that implements Velocity control
+	
+	Because the External Setpoint Generator provides smoother performce in a faster task,
+	the Axis Components are defined within a POU that is updated by a 2ms Fast_Task.
+
+	The fast task only calls the cyclic logic of the components, and sets the External Sequence of the component to the External Setpoint Generator.
+	The EMs defined under the Machine Module have an interface that is assigned to the components in the Fast_Task.
+	Through this interface the EM can control the component as if it was defined locally.
 *)
 Machine.CyclicLogic();
 
-(*
-	External Setpoint Generator
-	This code is the standard implementation of the External Setpoint Generator
-	Use this along with the Bassic_ESPG Visu if you have not used the External Setpoint Generator before
-*) 
-BasicESPG_Position();
-BasicESPG_Velocity();]]></ST>
+]]></ST>
     </Implementation>
   </POU>
 </TcPlcObject>

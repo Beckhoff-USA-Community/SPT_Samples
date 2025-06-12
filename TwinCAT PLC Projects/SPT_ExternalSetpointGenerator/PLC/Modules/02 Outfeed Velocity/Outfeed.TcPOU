@@ -3,9 +3,9 @@
   <POU Name="Outfeed" Id="{e948bf20-f0b6-46b0-a57a-2af964224def}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK Outfeed EXTENDS FB_PackML_BaseModule
 VAR
-	VelocityAxis   : FB_Component_BasicAxis := (Name := 'Velocity Axis');
-	ExtSetpointGen : FB_ExternalSetpointGenerator;
-	Stop		   : BOOL;
+	iOutfeedxis				   : I_BasicAxis;				  // For most axis and component commands
+	iOutfeedAxisComponent	   : I_ComponentBase;			  // For registering the component with the EM
+	iExternalSetpointGenerator : I_ExternalSetpointGenerator; // For setting properties of the External Setpoint Generator
 END_VAR]]></Declaration>
     <Implementation>
       <ST><![CDATA[]]></ST>
@@ -25,8 +25,8 @@ METHOD PROTECTED Aborting
 		SequenceState		   := SequenceState + 10;
 
 	10:
-		IF NOT VelocityAxis.Error THEN
-			IF VelocityAxis.Stop() THEN
+		IF NOT iOutfeedxis.Error THEN
+			IF iOutfeedxis.Stop() THEN
 				SequenceState := SequenceState + 10;
 			END_IF
 		ELSE
@@ -34,26 +34,21 @@ METHOD PROTECTED Aborting
 		END_IF
 
 	20:
-		IF VelocityAxis.Stopped THEN
+		IF iOutfeedxis.Stopped THEN
 			SequenceState := SequenceState + 10;
 		END_IF
 
 	30:
-		IF VelocityAxis.Disable() THEN
+		IF iOutfeedxis.Disable() THEN
 			SequenceState := SequenceState + 10;
 		END_IF
 
 	40:
-		IF NOT VelocityAxis.Enabled THEN
+		IF NOT iOutfeedxis.Enabled THEN
 			SequenceState := SequenceState + 10;
 		END_IF
 
 	50:
-		IF ExtSetpointGen.Disable() THEN
-			SequenceState := SequenceState + 10;
-		END_IF
-
-	60:
 		StateTasksComplete := TRUE;
 END_CASE
 
@@ -79,15 +74,16 @@ END_VAR
 		SequenceState		   := SequenceState + 10;
 
 	10:
-		IF VelocityAxis.Reset() THEN
+		IF iOutfeedxis.Reset() THEN
 			SequenceState := SequenceState + 10;
 		END_IF
 
 	20:
-		IF NOT VelocityAxis.Error THEN
+		IF NOT iOutfeedxis.Error THEN
 			SequenceState := SequenceState + 10;
 		END_IF
 
+	30:
 		StateTasksComplete := TRUE;
 END_CASE
 
@@ -114,41 +110,40 @@ END_VAR]]></Declaration>
 	E_PMLUnitMode.ePMLUnitMode_Production:
 		CASE SequenceState OF
 			0:
-				ExtSetpointGen.Direction   := 1;
-				ExtSetpointGen.Destination := 0.0;
-				ExtSetpointGen.Velocity	   := 0.0;
-				ExtSetpointGen.Accel	   := 0.0;
-				SequenceState			   := 10;
+				iExternalSetpointGenerator.Direction   := 1;
+				iExternalSetpointGenerator.Destination := 0.0;
+				iExternalSetpointGenerator.Velocity	   := 0.0;
+				iExternalSetpointGenerator.Accel	   := 0.0;
+				SequenceState						   := 10;
 
 			10:
-				IF VelocityAxis.RunExternalSequence() THEN
+				IF iOutfeedxis.RunExternalSequence() THEN
 					SequenceState := 20;
 				END_IF
 
 			20:
-				IF VelocityAxis.Axis.Status.HasJob THEN
+				IF iOutfeedxis.Axis.Status.HasJob THEN //Setpoint generator is operational
 					SequenceState := 30;
 				END_IF
 
 			30: // Raise Velocity
 
 				//ExtSetpointGen.Velocity := VelocityAxis.ActualVelocity + ((100.0 - VelocityAxis.ActualVelocity) * 0.01); // Without encoder feedback the Actual Velocity will stay at 0
-				ExtSetpointGen.Velocity := ExtSetpointGen.Velocity + 0.01;
-				IF Stop THEN
-					Stop		  := FALSE;
+				iExternalSetpointGenerator.Velocity := iExternalSetpointGenerator.Velocity + 0.01;
+				IF iOutfeedxis.SetVelocity > 100.0 THEN
 					SequenceState := 40;
 				END_IF
 
 			40: // Reduce Velocity to 0
 
 				//ExtSetpointGen.Velocity := VelocityAxis.ActualVelocity - ((0.0 - VelocityAxis.ActualVelocity) * 0.01); // Without encoder feedback the Actual Velocity will stay at 0
-				ExtSetpointGen.Velocity := ExtSetpointGen.Velocity - 0.01;
-				IF (ExtSetpointGen.Velocity <= 1.0) AND (VelocityAxis.ActualVelocity = 0) THEN
+				iExternalSetpointGenerator.Velocity := iExternalSetpointGenerator.Velocity - 0.01;
+				IF (iExternalSetpointGenerator.Velocity <= 1.0) AND (iOutfeedxis.ActualVelocity = 0) THEN
 					SequenceState := 50;
 				END_IF
 
 			50:
-				IF ExtSetpointGen.Disable() THEN
+				IF iExternalSetpointGenerator.Disable() THEN
 					SequenceState := 60;
 				END_IF
 
@@ -169,12 +164,17 @@ END_VAR
         <ST><![CDATA[Initialize := FALSE;
 CASE DescendantSequenceState OF
 	0:
-		RegisterComponent(Component := VelocityAxis);
+		// Interfaces to connect to Components in the Fast_Task
+		iOutfeedxis				   := Fast_Task.VelocityAxis;	   // For most axis and component commands
+		iOutfeedAxisComponent	   := Fast_Task.VelocityAxis;	   // For registering the component with the EM
+		iExternalSetpointGenerator := Fast_Task.VelExtSetpointGen; // For setting properties of the External Setpoint Generator
+
+		//
+		RegisterComponent(Component := iOutfeedAxisComponent);
 		DescendantSequenceState := DescendantSequenceState + 10;
 
 	10:
 		IF SUPER^.Initialize() THEN
-			VelocityAxis.ExternalSequence	:= ExtSetpointGen;
 			DescendantSequenceState := DescendantSequenceState + 10;
 		END_IF
 
@@ -194,12 +194,12 @@ END_VAR]]></Declaration>
 		SequenceState		   := SequenceState + 10;
 
 	10:
-		IF VelocityAxis.Enable() THEN
+		IF iOutfeedxis.Enable() THEN
 			SequenceState := SequenceState + 10;
 		END_IF
 
 	20:
-		IF VelocityAxis.Enabled THEN
+		IF iOutfeedxis.Enabled THEN
 			SequenceState := SequenceState + 10;
 		END_IF
 

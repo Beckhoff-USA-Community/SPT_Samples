@@ -2291,8 +2291,11 @@ External Setpoint Generation:
 				<Cpu CpuId="19"/>
 			</Settings>
 			<Tasks>
-				<Task Id="3" Priority="20" CycleTime="20000" AmsPort="350" AdtTasks="true">
+				<Task Id="3" Priority="20" CycleTime="100000" AmsPort="350" AdtTasks="true">
 					<Name>PlcTask</Name>
+				</Task>
+				<Task Id="6" Priority="1" CycleTime="20000" AmsPort="351" AdtTasks="true">
+					<Name>FastTask</Name>
 				</Task>
 			</Tasks>
 		</System>
@@ -2301,17 +2304,17 @@ External Setpoint Generation:
 		</Motion>
 		<Plc>
 			<Project GUID="{FD18CC1B-50E2-4C1B-909B-65980481445A}" Name="PLC" PrjFilePath="PLC\PLC.plcproj" TmcFilePath="PLC\PLC.tmc" ReloadTmc="true" AmsPort="851" FileArchiveSettings="#x000e" SymbolicMapping="true">
-				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="PLC\PLC.tmc" TmcHash="{9EBBDAD9-32F5-D3A9-D9D9-3873F0308F93}">
+				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="PLC\PLC.tmc" TmcHash="{2E3ADBEA-3A78-D335-C9F1-78A0D0568D0C}">
 					<Name>PLC Instance</Name>
 					<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 					<Vars VarGrpType="1">
-						<Name>PlcTask Inputs</Name>
+						<Name>FastTask Inputs</Name>
 						<Var>
-							<Name>MAIN.Machine.Infeed.PositionAxis.BasicAxis._Axis.NcToPlc</Name>
+							<Name>Fast_Task.PositionAxis.BasicAxis._Axis.NcToPlc</Name>
 							<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 						</Var>
 						<Var>
-							<Name>MAIN.Machine.Outfeed.VelocityAxis.BasicAxis._Axis.NcToPlc</Name>
+							<Name>Fast_Task.VelocityAxis.BasicAxis._Axis.NcToPlc</Name>
 							<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 						</Var>
 						<Var>
@@ -2324,13 +2327,13 @@ External Setpoint Generation:
 						</Var>
 					</Vars>
 					<Vars VarGrpType="2" AreaNo="1">
-						<Name>PlcTask Outputs</Name>
+						<Name>FastTask Outputs</Name>
 						<Var>
-							<Name>MAIN.Machine.Infeed.PositionAxis.BasicAxis._Axis.PlcToNc</Name>
+							<Name>Fast_Task.PositionAxis.BasicAxis._Axis.PlcToNc</Name>
 							<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 						</Var>
 						<Var>
-							<Name>MAIN.Machine.Outfeed.VelocityAxis.BasicAxis._Axis.PlcToNc</Name>
+							<Name>Fast_Task.VelocityAxis.BasicAxis._Axis.PlcToNc</Name>
 							<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 						</Var>
 						<Var>
@@ -2345,15 +2348,25 @@ External Setpoint Generation:
 					<Contexts>
 						<Context>
 							<Id>0</Id>
+							<Name>FastTask</Name>
+							<ManualConfig>
+								<OTCID>#x02010060</OTCID>
+							</ManualConfig>
+							<Priority>1</Priority>
+							<CycleTime>2000000</CycleTime>
+						</Context>
+						<Context>
+							<Id>1</Id>
 							<Name>PlcTask</Name>
 							<ManualConfig>
 								<OTCID>#x02010030</OTCID>
 							</ManualConfig>
 							<Priority>20</Priority>
-							<CycleTime>2000000</CycleTime>
+							<CycleTime>10000000</CycleTime>
 						</Context>
 					</Contexts>
 					<TaskPouOids>
+						<TaskPouOid Prio="1" OTCID="#x08502002"/>
 						<TaskPouOid Prio="20" OTCID="#x08502001"/>
 					</TaskPouOids>
 				</Instance>
@@ -2362,23 +2375,23 @@ External Setpoint Generation:
 		<Io/>
 	</Project>
 	<Mappings>
-		<MappingInfo Identifier="{05000010-2001-0850-1000-040300205008}" Id="#x02030010" Watchdog="04000000040000000400000004000000"/>
+		<MappingInfo Identifier="{08502002-0010-0500-0020-500810000403}" Id="#x02030020" Watchdog="04000000040000000400000004000000"/>
 		<OwnerA Name="TIPC^PLC^PLC Instance">
 			<OwnerB Name="TINC^NC-Task 1 SAF^Axes^Axis Position">
-				<Link VarA="PlcTask Inputs^MAIN.Machine.Infeed.PositionAxis.BasicAxis._Axis.NcToPlc" VarB="Outputs^ToPlc"/>
-				<Link VarA="PlcTask Outputs^MAIN.Machine.Infeed.PositionAxis.BasicAxis._Axis.PlcToNc" VarB="Inputs^FromPlc"/>
+				<Link VarA="FastTask Inputs^Fast_Task.PositionAxis.BasicAxis._Axis.NcToPlc" VarB="Outputs^ToPlc"/>
+				<Link VarA="FastTask Outputs^Fast_Task.PositionAxis.BasicAxis._Axis.PlcToNc" VarB="Inputs^FromPlc"/>
 			</OwnerB>
 			<OwnerB Name="TINC^NC-Task 1 SAF^Axes^Axis Velocity">
-				<Link VarA="PlcTask Inputs^MAIN.Machine.Outfeed.VelocityAxis.BasicAxis._Axis.NcToPlc" VarB="Outputs^ToPlc"/>
-				<Link VarA="PlcTask Outputs^MAIN.Machine.Outfeed.VelocityAxis.BasicAxis._Axis.PlcToNc" VarB="Inputs^FromPlc"/>
+				<Link VarA="FastTask Inputs^Fast_Task.VelocityAxis.BasicAxis._Axis.NcToPlc" VarB="Outputs^ToPlc"/>
+				<Link VarA="FastTask Outputs^Fast_Task.VelocityAxis.BasicAxis._Axis.PlcToNc" VarB="Inputs^FromPlc"/>
 			</OwnerB>
 			<OwnerB Name="TINC^NC-Task 1 SAF^Axes^Basic ESPG Position">
-				<Link VarA="PlcTask Inputs^BasicESPG_Position.Basic_Axis.NcToPlc" VarB="Outputs^ToPlc"/>
-				<Link VarA="PlcTask Outputs^BasicESPG_Position.Basic_Axis.PlcToNc" VarB="Inputs^FromPlc"/>
+				<Link VarA="FastTask Inputs^BasicESPG_Position.Basic_Axis.NcToPlc" VarB="Outputs^ToPlc"/>
+				<Link VarA="FastTask Outputs^BasicESPG_Position.Basic_Axis.PlcToNc" VarB="Inputs^FromPlc"/>
 			</OwnerB>
 			<OwnerB Name="TINC^NC-Task 1 SAF^Axes^Basic ESPG Velocity">
-				<Link VarA="PlcTask Inputs^BasicESPG_Velocity.Basic_Axis.NcToPlc" VarB="Outputs^ToPlc"/>
-				<Link VarA="PlcTask Outputs^BasicESPG_Velocity.Basic_Axis.PlcToNc" VarB="Inputs^FromPlc"/>
+				<Link VarA="FastTask Inputs^BasicESPG_Velocity.Basic_Axis.NcToPlc" VarB="Outputs^ToPlc"/>
+				<Link VarA="FastTask Outputs^BasicESPG_Velocity.Basic_Axis.PlcToNc" VarB="Inputs^FromPlc"/>
 			</OwnerB>
 		</OwnerA>
 	</Mappings>

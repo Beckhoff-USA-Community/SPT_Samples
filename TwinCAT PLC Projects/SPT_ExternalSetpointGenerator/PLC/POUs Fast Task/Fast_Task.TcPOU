@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="Fast_Task" Id="{ed4d96df-0c88-46d4-91a5-50fcb010db2f}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM Fast_Task
+VAR
+	PositionAxis	  : FB_Component_BasicAxis := (Name := 'Position Axis');
+	PosExtSetpointGen : FB_ExternalSetpointGenerator;
+	VelocityAxis	  : FB_Component_BasicAxis := (Name := 'Velocity Axis');
+	VelExtSetpointGen : FB_ExternalSetpointGenerator;
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[(*
+	External Setpoint Generator
+	This code is the standard implementation of the External Setpoint Generator
+	Use this along with the Bassic_ESPG Visu to become familiar with how it works if you have not used the External Setpoint Generator before
+	This code is not used by the SPT Framework Implmentation
+*)
+BasicESPG_Position();
+BasicESPG_Velocity();
+
+(*****************************************************************************************************************************************************************)
+
+(*****************************************************************************************************************************************************************)
+
+(*****************************************************************************************************************************************************************)
+
+(*
+	These components are defined in this fast task in order for the values of the External Setpoint Generator
+	to be updated and transfered to the motion controler at the speed of the fast task.
+	These components are controlled and monitored through their interfaces from an EM 
+*)
+
+// Infeed EM
+PositionAxis.CyclicLogic();
+PositionAxis.ExternalSequence := PosExtSetpointGen;
+
+//Outfeed EM
+VelocityAxis.CyclicLogic();
+VelocityAxis.ExternalSequence := VelExtSetpointGen;]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
   <POU Name="FB_ExternalSetpointGenerator" Id="{6d415f76-4c13-400e-ac71-fda00daea3bc}" SpecialFunc="None">
-    <Declaration><![CDATA[FUNCTION_BLOCK FB_ExternalSetpointGenerator EXTENDS FB_CyclicFB IMPLEMENTS I_MotionSequence
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_ExternalSetpointGenerator EXTENDS FB_CyclicFB IMPLEMENTS I_MotionSequence, I_ExternalSetpointGenerator
 VAR
 	//Properties
 	_Axis		 : I_BasicAxis;
@@ -113,7 +113,12 @@ END_VAR]]></Declaration>
 		_Error := TRUE;
 END_CASE
 
-_Busy := SequenceStep <> 0;]]></ST>
+IF _Axis.Error THEN
+	SequenceStep := E_ExternalSPGen.DisableCmd;
+END_IF
+
+//
+_Busy := (SequenceStep <> 0) AND (NOT _Axis.Error);]]></ST>
       </Implementation>
     </Method>
     <Property Name="Destination" Id="{c7f40788-c6fa-4d1c-8ab7-1cd2f34c5c03}">
