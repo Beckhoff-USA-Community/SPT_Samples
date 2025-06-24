@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="MAIN" Id="{166a3d87-635a-49d2-95b3-df968757e07a}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM MAIN
+VAR
+	Machine : Machine := (Name := 'Machine');
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[// All sample code provided by Beckhoff Automation LLC are for illustrative purposes only and are provided “as is” and without any warranties, express or implied. Actual implementations in applications will vary significantly. Beckhoff Automation LLC shall have no liability for, and does not waive any rights in relation to, any code samples that it provides or the use of such code samples for any purpose.
+
+(*
+	This code contains a single Equipment Module that holds 2 Axes.
+	The first is the Cam Shaft (Master Axis), and the second is the Cam Follwer that will follow the cam table as the Cam Shaft is mmoving.
+	The Cam table data is populated during the Initializs method.
+	The Visu provides the functionality to update the the running table based on the tables defined within the CamParameters.CamTable array.
+*)
+
+// For Debug Only
+_AppInfo.KeepOutputsOnBP := TRUE;
+
+//
+Machine.CyclicLogic();]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>
