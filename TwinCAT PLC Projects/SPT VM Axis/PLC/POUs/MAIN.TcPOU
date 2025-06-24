@@ -3,20 +3,18 @@
   <POU Name="MAIN" Id="{7e5c02d1-a39d-4f28-8629-587743ad1f26}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM MAIN
 VAR
-	Machine	  : FB_Machine := (Name := 'Machine');
-	nextState : BOOL;
-	abort	  : BOOL;
-	stop	  : BOOL;
-	curState  : E_PMLState;
+	Machine : Machine := (Name := 'Machine');
 END_VAR]]></Declaration>
     <Implementation>
-      <ST><![CDATA[(*All sample code provided by Beckhoff Automation LLC are for illustrative purposes only and are provided “as is” and without any warranties, express or implied. Actual implementations in applications will vary significantly. Beckhoff Automation LLC shall have no liability for, and does not waive any rights in relation to, any code samples that it provides or the use of such code samples for any purpose.*)
+      <ST><![CDATA[// All sample code provided by Beckhoff Automation LLC are for illustrative purposes only and are provided “as is” and without any warranties, express or implied. Actual implementations in applications will vary significantly. Beckhoff Automation LLC shall have no liability for, and does not waive any rights in relation to, any code samples that it provides or the use of such code samples for any purpose.
 
 (*
-This code is not a full implementation as there is no use of MC_Reset or other needed code for actual machine use.
-Take note of step 20 in FB_Machine.Initialize, this is where the Axes are assigned to their Master.
-The Unwind Axis makes use of a Gear Ratio in its Coupling.
+This code is not a full implementation for actual machine use.
+Take note of step 20 in Machine.Initialize, this is where the Equipment Modules (Unwind and Draw) are assigned a reference to their Master Axis in the Virtual Master EM.
+Then in the Unwind.Starting and DrawAxis.Starting the Master of the local axis is assigned to the _MasterRef 
+The Unwind Axis makes use of a Gear Ratio in its Coupling, while the Draw Axis uses the default of 1:1.
 There is no code to move the master axis, but it can be jogged from the NC for testing.
+The code in the base class will call the Reset method of the components during the Clearing state.
 *)
 
 // For Debug Only
