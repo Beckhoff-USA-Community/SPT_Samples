@@ -20,7 +20,10 @@ END_VAR]]></Declaration>
     <Implementation>
       <ST><![CDATA[]]></ST>
     </Implementation>
-    <Method Name="ChangeEventSeverity" Id="{09629aa5-80d9-403d-9577-33b283b0b55a}">
+    <Folder Name="Alarms" Id="{c0af0fbd-47d8-4f49-ae55-3213298d437f}" />
+    <Folder Name="Cyclic Logic" Id="{68e94a7a-9b20-4674-8c00-342bd800f0ac}" />
+    <Folder Name="Initialize" Id="{f9c6e3e9-786b-401f-a937-f587f76aa254}" />
+    <Method Name="ChangeEventSeverity" Id="{09629aa5-80d9-403d-9577-33b283b0b55a}" FolderPath="Alarms\">
       <Declaration><![CDATA[METHOD ChangeEventSeverity
 VAR_INPUT
 	AlarmID	 : E_ComponentEvents;
@@ -36,7 +39,7 @@ localAlarm.eSeverity := Severity;
 ComponentAlarms[AlarmID].CreateEx(localAlarm, 0, 0);]]></ST>
       </Implementation>
     </Method>
-    <Method Name="CreateEvents" Id="{b63661ac-39bc-48a5-a0dc-7e1dceb7a9cb}">
+    <Method Name="CreateEvents" Id="{b63661ac-39bc-48a5-a0dc-7e1dceb7a9cb}" FolderPath="Initialize\">
       <Declaration><![CDATA[//! @summary Initializes event function blocks using this components's name
 METHOD PROTECTED CreateEvents
 
@@ -50,7 +53,7 @@ METHOD PROTECTED CreateEvents
 SUPER^.CreateEvents();]]></ST>
       </Implementation>
     </Method>
-    <Method Name="CyclicLogic" Id="{57f3e089-87ec-40e9-8d89-c2565e148729}">
+    <Method Name="CyclicLogic" Id="{57f3e089-87ec-40e9-8d89-c2565e148729}" FolderPath="Cyclic Logic\">
       <Declaration><![CDATA[//! @summary This method serves as the entry point for all underlying FB logic
 METHOD PUBLIC CyclicLogic
 //! @description This method should be called cyclically by descendant function blocks by invoking <c>SUPER^.CyclicLogic()</c>.  Alternatively, the contents of this method could be reimplemented entirely in which case a call to this method would not be necessary.
@@ -75,7 +78,7 @@ _CurrentAlarmSeverity := F_GetMaxSeverityRaised(Alarms := ComponentAlarms, Curre
 _Error				  := _CurrentAlarmSeverity >= TcEventSeverity.Error;]]></ST>
       </Implementation>
     </Method>
-    <Method Name="Initialize" Id="{11e869de-f8c6-4429-bc4c-971153785719}">
+    <Method Name="Initialize" Id="{11e869de-f8c6-4429-bc4c-971153785719}" FolderPath="Initialize\">
       <Declaration><![CDATA[//! @summary Basic component initialization logic
 METHOD PROTECTED Initialize : BOOL;
 
@@ -84,7 +87,7 @@ METHOD PROTECTED Initialize : BOOL;
         <ST><![CDATA[Initialize := SUPER^.Initialize();]]></ST>
       </Implementation>
     </Method>
-    <Method Name="Monitoring" Id="{7c9b6c42-8fe1-4877-98d5-b7e6e33b37fa}">
+    <Method Name="Monitoring" Id="{7c9b6c42-8fe1-4877-98d5-b7e6e33b37fa}" FolderPath="Alarms\">
       <Declaration><![CDATA[//! Provides basic error detection and event handling for this component
 METHOD PROTECTED Monitoring
 (*! @descriptionThis method is called cyclically by <c>CyclicLogic()</c>*)
@@ -141,7 +144,7 @@ END_IF
 SUPER^.Monitoring();]]></ST>
       </Implementation>
     </Method>
-    <Method Name="RaiseAlarm2Args" Id="{741dfd78-f38e-446f-bb3c-e2492225744e}">
+    <Method Name="RaiseAlarm2Args" Id="{741dfd78-f38e-446f-bb3c-e2492225744e}" FolderPath="Alarms\">
       <Declaration><![CDATA[METHOD RaiseAlarm2Args
 VAR_IN_OUT
 	Alarm : FB_TcAlarm; //Alarm to be raised

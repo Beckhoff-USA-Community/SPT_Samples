@@ -4,7 +4,48 @@
     <XmlArchive>
       <Data>
         <o xml:space="preserve" t="GlobalTextListObject">
-          <l n="TextList" t="ArrayList" />
+          <l n="TextList" t="ArrayList" cet="TextListRow">
+            <o>
+              <v n="TextID">"350"</v>
+              <v n="TextDefault">"%s Alarms"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"110"</v>
+              <v n="TextDefault">"EM Alarms"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"337"</v>
+              <v n="TextDefault">"Machine Alarms"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"757"</v>
+              <v n="TextDefault">"Test Critical"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"405"</v>
+              <v n="TextDefault">"Test Error"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"396"</v>
+              <v n="TextDefault">"Test Info"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"857"</v>
+              <v n="TextDefault">"Test Verbose"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"629"</v>
+              <v n="TextDefault">"Test Warning"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+          </l>
           <l n="Languages" t="ArrayList" />
           <v n="GuidInit">{28ff87ca-39ec-47c5-af19-675cf4739707}</v>
           <v n="GuidReInit">{f85bee6d-8ec3-4ac5-8303-f4b524d94c4a}</v>
@@ -15,6 +56,8 @@
         <Type n="ArrayList">System.Collections.ArrayList</Type>
         <Type n="GlobalTextListObject">{63784cbb-9ba0-45e6-9d69-babf3f040511}</Type>
         <Type n="Guid">System.Guid</Type>
+        <Type n="String">System.String</Type>
+        <Type n="TextListRow">{53da1be7-ad25-47c3-b0e8-e26286dad2e0}</Type>
       </TypeList>
     </XmlArchive>
   </GlobalTextList>

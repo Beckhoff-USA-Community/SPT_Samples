@@ -18,22 +18,22 @@
     <LibraryReferences>{2ae72994-126f-4840-a129-3bf29fb62f9a}</LibraryReferences>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Components\Component\Component.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="GlobalTextList.TcGTLO">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Modules\00 Machine\Machine.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Modules\01 Equipment Module\EquipmentModule.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Modules\02 Equipment Module with Submodule\EquipmentModuleWithSubModule.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="PlcTask.TcTTO">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="POUs\Component.TcPOU">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="POUs\EquipmentModule.TcPOU">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="POUs\EquipmentModuleWithSubModule.TcPOU">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="POUs\Machine.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\MAIN.TcPOU">
@@ -48,8 +48,12 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="DUTs" />
-    <Folder Include="GVLs" />
+    <Folder Include="Components\Component" />
+    <Folder Include="Modules" />
+    <Folder Include="Modules\00 Machine" />
+    <Folder Include="Modules\01 Equipment Module" />
+    <Folder Include="Modules\02 Equipment Module with Submodule" />
+    <Folder Include="Components" />
     <Folder Include="VISUs" />
     <Folder Include="POUs" />
   </ItemGroup>
@@ -168,10 +172,10 @@
   </ItemGroup>
   <ItemGroup>
     <PlaceholderResolution Include="SPT Base Types">
-      <Resolution>SPT Base Types, 3.9.0 (Beckhoff Automation LLC)</Resolution>
+      <Resolution>SPT Base Types, 3.9.1 (Beckhoff Automation LLC)</Resolution>
     </PlaceholderResolution>
     <PlaceholderResolution Include="SPT Components">
-      <Resolution>SPT Components, 3.9.1 (Beckhoff Automation LLC)</Resolution>
+      <Resolution>SPT Components, 3.9.3 (Beckhoff Automation LLC)</Resolution>
     </PlaceholderResolution>
     <PlaceholderResolution Include="SPT Diagnostic">
       <Resolution>SPT Diagnostic, 3.9.0 (Beckhoff Automation LLC)</Resolution>
@@ -186,7 +190,7 @@
       <Resolution>SPT Kinematics, 3.9.0 (Beckhoff Automation LLC)</Resolution>
     </PlaceholderResolution>
     <PlaceholderResolution Include="SPT Motion Control">
-      <Resolution>SPT Motion Control, 3.9.0 (Beckhoff Automation LLC)</Resolution>
+      <Resolution>SPT Motion Control, 3.9.2 (Beckhoff Automation LLC)</Resolution>
     </PlaceholderResolution>
     <PlaceholderResolution Include="SPT NCI">
       <Resolution>SPT NCI, 3.9.0 (Beckhoff Automation LLC)</Resolution>
@@ -204,8 +208,8 @@
   <ProjectExtensions>
     <PlcProjectOptions>
       <XmlArchive>
-  <Data>
-    <o xml:space="preserve" t="OptionKey">
+        <Data>
+          <o xml:space="preserve" t="OptionKey">
       <v n="Name">"&lt;ProjectRoot&gt;"</v>
       <d n="SubKeys" t="Hashtable" ckt="String" cvt="OptionKey">
         <v>{246001F4-279D-43AC-B241-948EB31120E1}</v>
@@ -254,14 +258,14 @@
       </d>
       <d n="Values" t="Hashtable" />
     </o>
-  </Data>
-  <TypeList>
-    <Type n="Boolean">System.Boolean</Type>
-    <Type n="Hashtable">System.Collections.Hashtable</Type>
-    <Type n="OptionKey">{54dd0eac-a6d8-46f2-8c27-2f43c7e49861}</Type>
-    <Type n="String">System.String</Type>
-  </TypeList>
-</XmlArchive>
+        </Data>
+        <TypeList>
+          <Type n="Boolean">System.Boolean</Type>
+          <Type n="Hashtable">System.Collections.Hashtable</Type>
+          <Type n="OptionKey">{54dd0eac-a6d8-46f2-8c27-2f43c7e49861}</Type>
+          <Type n="String">System.String</Type>
+        </TypeList>
+      </XmlArchive>
     </PlcProjectOptions>
   </ProjectExtensions>
 </Project>

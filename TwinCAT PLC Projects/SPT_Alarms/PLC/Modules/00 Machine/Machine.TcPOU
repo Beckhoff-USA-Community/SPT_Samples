@@ -23,7 +23,11 @@ END_VAR]]></Declaration>
     <Implementation>
       <ST><![CDATA[]]></ST>
     </Implementation>
-    <Method Name="Clearing" Id="{218ba0d7-e931-4a28-8ae7-0db360a35c2d}">
+    <Folder Name="Acting States" Id="{72f6497d-6935-4f24-a437-9899e16d1546}" />
+    <Folder Name="Alarms" Id="{541424ef-5a5d-4d15-b8c5-2c4c9d4c110b}" />
+    <Folder Name="Cyclic Logic" Id="{91d852f5-95e2-4d66-9825-91798e5cd3c7}" />
+    <Folder Name="Initialize" Id="{e138bc97-7ae3-42bb-b7ff-98024f40c36a}" />
+    <Method Name="Clearing" Id="{218ba0d7-e931-4a28-8ae7-0db360a35c2d}" FolderPath="Acting States\">
       <Declaration><![CDATA[METHOD PROTECTED Clearing
 VAR
 	i				: UDINT;
@@ -98,7 +102,7 @@ ELSE
 END_IF]]></ST>
       </Implementation>
     </Method>
-    <Method Name="CreateEvents" Id="{4ed9832e-c5dc-46d4-abe9-a51eb498396c}">
+    <Method Name="CreateEvents" Id="{4ed9832e-c5dc-46d4-abe9-a51eb498396c}" FolderPath="Initialize\">
       <Declaration><![CDATA[//! @summary Initializes event function blocks using this module's name
 METHOD PROTECTED CreateEvents
 
@@ -112,7 +116,7 @@ METHOD PROTECTED CreateEvents
 SUPER^.CreateEvents();]]></ST>
       </Implementation>
     </Method>
-    <Method Name="CyclicLogic" Id="{e574dd6e-a801-487f-b62e-c8264bb86070}">
+    <Method Name="CyclicLogic" Id="{e574dd6e-a801-487f-b62e-c8264bb86070}" FolderPath="Cyclic Logic\">
       <Declaration><![CDATA[//! @summary This method serves as the entry point for all underlying FB logic
 
 //! @description This method should be called cyclically by descendant function blocks by invoking <c>SUPER^.CyclicLogic()</c>.  Alternatively, the contents of this method could be reimplemented entirely in which case a call to this method would not be necessary.
@@ -153,7 +157,7 @@ _Error				  := _CurrentAlarmSeverity >= TcEventSeverity.Error;
 Trace(Message := 'Test Mesage');]]></ST>
       </Implementation>
     </Method>
-    <Method Name="HMIPermissions" Id="{8e547c5b-7f21-4282-8bac-b6fb115570bc}">
+    <Method Name="HMIPermissions" Id="{8e547c5b-7f21-4282-8bac-b6fb115570bc}" FolderPath="Cyclic Logic\">
       <Declaration><![CDATA[// Automatically enables and disables HMI control based on the PackML mode
 METHOD PROTECTED HMIPermissions
 
@@ -162,7 +166,7 @@ METHOD PROTECTED HMIPermissions
         <ST><![CDATA[AllowHMIControl(ThisModuleOnly := TRUE);]]></ST>
       </Implementation>
     </Method>
-    <Method Name="Initialize" Id="{d1725bba-8b00-4347-8fac-2b2ca6e24462}">
+    <Method Name="Initialize" Id="{d1725bba-8b00-4347-8fac-2b2ca6e24462}" FolderPath="Initialize\">
       <Declaration><![CDATA[//! @summary Basic module initialization logic
 METHOD PROTECTED Initialize : BOOL;
 VAR
@@ -193,7 +197,7 @@ CASE DescendantSequenceState OF
 END_CASE]]></ST>
       </Implementation>
     </Method>
-    <Method Name="MachineMonitor" Id="{8c8dc412-6c16-4a57-b8c9-8674903aa98b}">
+    <Method Name="MachineMonitor" Id="{8c8dc412-6c16-4a57-b8c9-8674903aa98b}" FolderPath="Alarms\">
       <Declaration><![CDATA[METHOD MachineMonitor
 VAR
 	AlarmResponses : ARRAY[0..4] OF E_AlarmResponse; //Temporary response array	
@@ -245,7 +249,7 @@ ELSIF _CurrentState = E_PMLState.ePMLState_Stopped OR _CurrentState = E_PMLState
 END_IF]]></ST>
       </Implementation>
     </Method>
-    <Method Name="RaiseAlarm2Args" Id="{106a700c-ae28-40c8-8dd9-a78e7098e9ff}">
+    <Method Name="RaiseAlarm2Args" Id="{106a700c-ae28-40c8-8dd9-a78e7098e9ff}" FolderPath="Alarms\">
       <Declaration><![CDATA[METHOD RaiseAlarm2Args
 VAR_IN_OUT
 	Alarm : FB_TcAlarm; //Alarm to be raised

@@ -43,7 +43,7 @@ Machine Module
 
 *)
 
-//This is for debug only and should be removed
+// This is for debug only and should be removed
 _AppInfo.KeepOutputsOnBP := TRUE;
 
 //

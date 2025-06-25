@@ -20,7 +20,11 @@ END_VAR]]></Declaration>
     <Implementation>
       <ST><![CDATA[]]></ST>
     </Implementation>
-    <Method Name="Clearing" Id="{42adf519-aa2a-48f8-93ec-12526c6718b7}">
+    <Folder Name="Acting States" Id="{5f66d7e4-03f9-4469-9f45-59684f607141}" />
+    <Folder Name="Alarms" Id="{e652f921-61e2-4491-a836-b91c2c79ad6f}" />
+    <Folder Name="Cyclic Logic" Id="{4dfa99e5-e4fd-42c1-b351-0f6cf23a82d4}" />
+    <Folder Name="Initialize" Id="{9607fe24-bac4-4355-946f-6da2eaaeb922}" />
+    <Method Name="Clearing" Id="{42adf519-aa2a-48f8-93ec-12526c6718b7}" FolderPath="Acting States\">
       <Declaration><![CDATA[METHOD PROTECTED Clearing
 VAR
 	i				: UDINT;
@@ -31,7 +35,7 @@ END_VAR]]></Declaration>
 SUPER^.Clearing();]]></ST>
       </Implementation>
     </Method>
-    <Method Name="CreateEvents" Id="{bb8bda21-b36a-403a-b5f3-cd1c4d4d372e}">
+    <Method Name="CreateEvents" Id="{bb8bda21-b36a-403a-b5f3-cd1c4d4d372e}" FolderPath="Initialize\">
       <Declaration><![CDATA[//! @summary Initializes event function blocks using this module's name
 METHOD PROTECTED CreateEvents
 
@@ -45,7 +49,7 @@ METHOD PROTECTED CreateEvents
 SUPER^.CreateEvents();]]></ST>
       </Implementation>
     </Method>
-    <Method Name="CyclicLogic" Id="{ee9be657-b87f-463e-9973-25c76b94c8d3}">
+    <Method Name="CyclicLogic" Id="{ee9be657-b87f-463e-9973-25c76b94c8d3}" FolderPath="Cyclic Logic\">
       <Declaration><![CDATA[//! @summary This method serves as the entry point for all underlying FB logic
 
 //! @description This method should be called cyclically by descendant function blocks by invoking <c>SUPER^.CyclicLogic()</c>.  Alternatively, the contents of this method could be reimplemented entirely in which case a call to this method would not be necessary.
@@ -99,7 +103,7 @@ _CurrentAlarmSeverity := F_GetMaxSeverityRaised(Alarms := EquipmentAlarms, Curre
 _Error				  := _CurrentAlarmSeverity >= TcEventSeverity.Error;]]></ST>
       </Implementation>
     </Method>
-    <Method Name="Initialize" Id="{7bacb92d-1c65-4128-89d7-8fc154a247aa}">
+    <Method Name="Initialize" Id="{7bacb92d-1c65-4128-89d7-8fc154a247aa}" FolderPath="Initialize\">
       <Declaration><![CDATA[//! @summary Basic module initialization logic
 METHOD PROTECTED Initialize : BOOL;
 VAR
@@ -130,7 +134,7 @@ CASE DescendantSequenceState OF
 END_CASE]]></ST>
       </Implementation>
     </Method>
-    <Method Name="RaiseAlarm2Args" Id="{f74b26f3-a272-420e-93a0-03bbfe7c0028}">
+    <Method Name="RaiseAlarm2Args" Id="{f74b26f3-a272-420e-93a0-03bbfe7c0028}" FolderPath="Alarms\">
       <Declaration><![CDATA[METHOD RaiseAlarm2Args
 VAR_IN_OUT
 	Alarm : FB_TcAlarm; //Alarm to be raised
